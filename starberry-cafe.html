@@ -1,0 +1,2977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ff8fb8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Starberry Café">
+<meta name="description" content="A cozy merge & math adventure with K-pop animal idols!">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Starberry%20Caf%C3%A9%22%2C%22short_name%22%3A%22Starberry%22%2C%22description%22%3A%22A%20cozy%20merge%20%26%20math%20adventure%20with%20K-pop%20animal%20idols%21%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23ffe6f0%22%2C%22theme_color%22%3A%22%23ff8fb8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520512%2520512%2522%253E%250A%253Crect%2520width%253D%2522512%2522%2520height%253D%2522512%2522%2520rx%253D%2522120%2522%2520fill%253D%2522%2523ff8fb8%2522%252F%253E%250A%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522280%2522%2520r%253D%2522140%2522%2520fill%253D%2522%2523fff6fa%2522%252F%253E%250A%253Cellipse%2520cx%253D%2522180%2522%2520cy%253D%2522120%2522%2520rx%253D%252236%2522%2520ry%253D%252290%2522%2520fill%253D%2522%2523fff6fa%2522%2520transform%253D%2522rotate%2528-15%2520180%2520120%2529%2522%252F%253E%250A%253Cellipse%2520cx%253D%2522332%2522%2520cy%253D%2522120%2522%2520rx%253D%252236%2522%2520ry%253D%252290%2522%2520fill%253D%2522%2523fff6fa%2522%2520transform%253D%2522rotate%252815%2520332%2520120%2529%2522%252F%253E%250A%253Ccircle%2520cx%253D%2522200%2522%2520cy%253D%2522270%2522%2520r%253D%252214%2522%2520fill%253D%2522%2523333%2522%252F%253E%250A%253Ccircle%2520cx%253D%2522312%2522%2520cy%253D%2522270%2522%2520r%253D%252214%2522%2520fill%253D%2522%2523333%2522%252F%253E%250A%253Ccircle%2520cx%253D%2522170%2522%2520cy%253D%2522300%2522%2520r%253D%252218%2522%2520fill%253D%2522%2523ffb6c9%2522%252F%253E%250A%253Ccircle%2520cx%253D%2522342%2522%2520cy%253D%2522300%2522%2520r%253D%252218%2522%2520fill%253D%2522%2523ffb6c9%2522%252F%253E%250A%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522320%2522%2520r%253D%252210%2522%2520fill%253D%2522%2523ff8fb8%2522%252F%253E%250A%253Cpath%2520d%253D%2522M230%2520350%2520Q256%2520370%2520282%2520350%2522%2520stroke%253D%2522%2523333%2522%2520stroke-width%253D%25228%2522%2520fill%253D%2522none%2522%2520stroke-linecap%253D%2522round%2522%252F%253E%250A%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="55" r="35" fill="%23fff"/><ellipse cx="30" cy="22" rx="8" ry="22" fill="%23fff" transform="rotate(-15 30 22)"/><ellipse cx="70" cy="22" rx="8" ry="22" fill="%23fff" transform="rotate(15 70 22)"/><circle cx="38" cy="52" r="4" fill="%23333"/><circle cx="62" cy="52" r="4" fill="%23333"/></svg>'>
+<title>Starberry Café 🍓✨</title>
+<style>
+/* ========== DESIGN TOKENS ========== */
+:root {
+  --pink: #ff8fb8;
+  --pink-deep: #f45d96;
+  --pink-soft: #ffd4e4;
+  --lav: #c9a7ff;
+  --lav-deep: #9b6dff;
+  --mint: #7ddecb;
+  --mint-deep: #2ec4b6;
+  --peach: #ffb56b;
+  --lemon: #ffe66d;
+  --sky: #8ecae6;
+  --cream: #fff6fa;
+  --ink: #4a3350;
+  --ink-soft: #7a6580;
+  --white: #ffffff;
+  --shadow: 0 8px 24px rgba(244, 93, 150, 0.18);
+  --shadow-lg: 0 16px 40px rgba(244, 93, 150, 0.22);
+  --radius: 22px;
+  --radius-sm: 14px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --font: 'Comic Sans MS', 'Segoe UI', 'Comic Neue', 'Trebuchet MS', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--cream);
+  touch-action: manipulation;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at 20% 0%, #ffd4e4 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 0%, #e8d4ff 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, #d4f5ef 0%, transparent 45%),
+    linear-gradient(180deg, #fff0f6 0%, #fff6fa 40%, #f0eaff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* floating bg sparkles */
+.bg-sparkles {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+}
+.bg-sparkles span {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0.35;
+  animation: floatY 6s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(15deg); }
+}
+
+/* ========== SCREENS ========== */
+.screen {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  z-index: 1;
+  padding-top: var(--safe-top);
+}
+.screen.active { display: flex; }
+
+/* ========== TITLE ========== */
+#screen-title {
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  padding: 24px;
+}
+.logo-bounce {
+  animation: bounceIn 0.9s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes bounceIn {
+  0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.title-main {
+  font-size: clamp(32px, 9vw, 52px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--pink-deep), var(--lav-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  line-height: 1.1;
+}
+.title-sub {
+  font-size: clamp(13px, 3.5vw, 17px);
+  color: var(--ink-soft);
+  font-weight: 600;
+  max-width: 320px;
+  line-height: 1.4;
+}
+.title-characters {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0 4px;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 800;
+  border-radius: 999px;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+  touch-action: manipulation;
+}
+.btn:active { transform: scale(0.94); filter: brightness(1.05); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  color: white;
+  padding: 16px 36px;
+  font-size: 18px;
+  box-shadow: var(--shadow), 0 4px 0 #c93d6e;
+  min-width: 200px;
+}
+.btn-primary:active { box-shadow: var(--shadow), 0 2px 0 #c93d6e; transform: translateY(2px) scale(0.98); }
+.btn-secondary {
+  background: white;
+  color: var(--pink-deep);
+  padding: 12px 28px;
+  font-size: 15px;
+  box-shadow: var(--shadow);
+  border: 3px solid var(--pink-soft);
+}
+.btn-small {
+  background: white;
+  color: var(--ink);
+  padding: 10px 18px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(74,51,80,0.1);
+  border: 2px solid #f0e0ea;
+}
+.btn-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(74,51,80,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  border: 2px solid #f0e0ea;
+}
+.btn-star {
+  background: linear-gradient(135deg, var(--lemon), var(--peach));
+  color: var(--ink);
+  padding: 14px 28px;
+  font-size: 16px;
+  box-shadow: 0 4px 0 #e09a3a;
+}
+.btn:disabled { opacity: 0.5; pointer-events: none; }
+
+/* ========== HUD ========== */
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  gap: 8px;
+  z-index: 5;
+}
+.hud-left, .hud-right { display: flex; gap: 8px; align-items: center; }
+.pill {
+  background: white;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(74,51,80,0.1);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 2px solid #ffe0ec;
+}
+.pill span.icon { font-size: 16px; }
+
+/* ========== NAV ========== */
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 6px calc(8px + var(--safe-bottom));
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-top: 3px solid var(--pink-soft);
+  z-index: 10;
+  gap: 2px;
+}
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 2px;
+  border: none;
+  background: transparent;
+  border-radius: 16px;
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.nav-btn .ico { font-size: 22px; line-height: 1; }
+.nav-btn.active {
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+  transform: scale(1.05);
+}
+.nav-btn:active { transform: scale(0.92); }
+
+/* ========== CAFE SCREEN ========== */
+.cafe-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 3px solid #ffe4ef;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.customer-area {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.customer-art { flex-shrink: 0; width: 88px; height: 88px; }
+.customer-info { flex: 1; min-width: 0; }
+.customer-name {
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.bubble {
+  background: #fff3f8;
+  border: 2px solid var(--pink-soft);
+  border-radius: 16px;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.35;
+  position: relative;
+  font-weight: 600;
+}
+.bubble::before {
+  content: '';
+  position: absolute;
+  left: -8px; top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: var(--pink-soft);
+}
+.order-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.chip {
+  background: linear-gradient(135deg, var(--lemon), var(--peach));
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 2px 0 #e09a3a;
+}
+.chip.math {
+  background: linear-gradient(135deg, var(--sky), var(--lav));
+  box-shadow: 0 2px 0 #7a5bb8;
+  color: white;
+}
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.quick-btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 16px 10px;
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+}
+.quick-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.12); }
+.quick-btn .ico { font-size: 28px; }
+.q-merge { background: linear-gradient(135deg, var(--mint), var(--mint-deep)); }
+.q-math { background: linear-gradient(135deg, var(--sky), #4a90c8); }
+.q-stage { background: linear-gradient(135deg, var(--pink), var(--pink-deep)); }
+.q-dress { background: linear-gradient(135deg, var(--lav), var(--lav-deep)); }
+
+.progress-wrap { margin-top: 4px; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.progress-bar {
+  height: 14px;
+  background: #f3e6ee;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid #ffe0ec;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--lav));
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+
+.story-ticker {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+  border: 3px solid #e8d4ff;
+}
+.story-ticker p {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* ========== MERGE BOARD ========== */
+.merge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  gap: 8px;
+}
+.merge-header h2 {
+  font-size: 16px;
+  font-weight: 900;
+}
+.merge-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.goal-box {
+  background: white;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  box-shadow: var(--shadow);
+  border: 3px solid var(--lemon);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.board-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  gap: 10px;
+  min-height: 0;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: min(94vw, 380px);
+  aspect-ratio: 1;
+  background: rgba(255,255,255,0.7);
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--pink-soft);
+}
+.cell {
+  background: #fff6fa;
+  border-radius: 14px;
+  border: 2px dashed #f0c8d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+.cell.filled {
+  border-style: solid;
+  border-color: #ffd0e0;
+  background: white;
+  box-shadow: 0 3px 8px rgba(244,93,150,0.12);
+}
+.cell.selected {
+  border-color: var(--pink-deep);
+  box-shadow: 0 0 0 3px var(--pink-soft);
+  animation: pulseSel 0.8s ease-in-out infinite;
+}
+@keyframes pulseSel {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.cell.pop { animation: cellPop 0.35s cubic-bezier(.34,1.56,.64,1); }
+@keyframes cellPop {
+  0% { transform: scale(0.6); }
+  100% { transform: scale(1); }
+}
+.item-art {
+  width: 82%;
+  height: 82%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(22px, 6vw, 34px);
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.08));
+  pointer-events: none;
+}
+.item-label {
+  position: absolute;
+  bottom: 2px;
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  background: rgba(255,255,255,0.85);
+  padding: 1px 5px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+.merge-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 14px 10px;
+}
+.spawn-preview {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: white;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--pink-soft);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* ========== MATH MODAL / SCREEN ========== */
+.math-screen {
+  padding: 16px;
+  gap: 14px;
+  overflow-y: auto;
+}
+.math-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--sky);
+  text-align: center;
+}
+.math-prompt {
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 900;
+  line-height: 1.35;
+  margin: 12px 0;
+}
+.math-story {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.math-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.math-opt {
+  border: 3px solid var(--pink-soft);
+  background: #fff6fa;
+  border-radius: var(--radius-sm);
+  padding: 18px 10px;
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 64px;
+}
+.math-opt:active { transform: scale(0.95); }
+.math-opt.correct {
+  background: #d4f5ef;
+  border-color: var(--mint-deep);
+  animation: correctPop 0.4s;
+}
+.math-opt.wrong {
+  background: #ffe0e0;
+  border-color: #e85d5d;
+  animation: shake 0.4s;
+}
+@keyframes correctPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+.math-feedback {
+  min-height: 28px;
+  font-weight: 800;
+  font-size: 15px;
+  margin-top: 8px;
+}
+.math-feedback.good { color: var(--mint-deep); }
+.math-feedback.bad { color: var(--pink-deep); }
+
+/* ========== STAGE / RHYTHM ========== */
+.stage-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 14px 14px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.stage-scene {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1.1;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #2d1b4e 0%, #5b2d8e 40%, #ff8fb8 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.stage-lights {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 60% at 20% 0%, rgba(255,230,109,0.4), transparent),
+    radial-gradient(ellipse 40% 60% at 50% 0%, rgba(255,143,184,0.45), transparent),
+    radial-gradient(ellipse 40% 60% at 80% 0%, rgba(201,167,255,0.4), transparent);
+  animation: lightsPulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes lightsPulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+.stage-floor {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.35));
+}
+.stage-crowd {
+  position: absolute;
+  bottom: 6px;
+  font-size: 22px;
+  letter-spacing: 6px;
+  opacity: 0.85;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+}
+.stage-performer {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 16px;
+  width: 110px;
+  height: 120px;
+  animation: danceBounce 0.5s ease-in-out infinite;
+}
+.stage-performer.hit { animation: danceHit 0.25s; }
+@keyframes danceBounce {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.03); }
+}
+@keyframes danceHit {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15) rotate(-5deg); }
+  100% { transform: scale(1); }
+}
+.rhythm-ui {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rhythm-lanes {
+  display: flex;
+  gap: 8px;
+}
+.lane {
+  flex: 1;
+  height: 150px;
+  background: linear-gradient(180deg, #fff6fa, #ffeef5);
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--pink-soft);
+  position: relative;
+  overflow: hidden;
+}
+.lane .hit-zone {
+  position: absolute;
+  bottom: 8px; left: 8px; right: 8px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--pink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--pink-deep);
+}
+.note {
+  position: absolute;
+  left: 50%;
+  width: 36px; height: 36px;
+  margin-left: -18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: none;
+}
+.lane-btns { display: flex; gap: 8px; }
+.lane-btn {
+  flex: 1;
+  padding: 16px 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-weight: 900;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+}
+.lane-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+.lane-btn.l0 { background: linear-gradient(135deg, var(--pink), var(--pink-deep)); }
+.lane-btn.l1 { background: linear-gradient(135deg, var(--lav), var(--lav-deep)); }
+.lane-btn.l2 { background: linear-gradient(135deg, var(--mint), var(--mint-deep)); }
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+  font-size: 15px;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+/* ========== DRESS ========== */
+.dress-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.doll-stage {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 3px solid var(--lav);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 220px;
+  justify-content: center;
+}
+.wardrobe {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.wardrobe-item {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  border: 3px solid #f0e0ea;
+  background: #fff6fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+.wardrobe-item.active {
+  border-color: var(--lav-deep);
+  background: #f0eaff;
+  box-shadow: 0 0 0 2px var(--lav);
+}
+.wardrobe-item:active { transform: scale(0.92); }
+.wardrobe-item.locked {
+  opacity: 0.45;
+  filter: grayscale(0.5);
+}
+
+/* ========== STORY ========== */
+.story-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.episode {
+  background: white;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  border: 3px solid var(--pink-soft);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.episode:active { transform: scale(0.98); }
+.episode.locked { opacity: 0.5; pointer-events: none; }
+.episode.done { border-color: var(--mint); }
+.episode h3 { font-size: 15px; font-weight: 900; margin-bottom: 4px; }
+.episode p { font-size: 12px; color: var(--ink-soft); font-weight: 600; line-height: 1.35; }
+.episode-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-bottom: 6px;
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+}
+.episode.done .episode-tag { background: #d4f5ef; color: var(--mint-deep); }
+
+/* ========== MODALS ========== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 51, 80, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-backdrop.show { display: flex; }
+.modal {
+  background: white;
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  width: min(100%, 400px);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--pink-soft);
+  animation: modalIn 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalIn {
+  0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.modal h2 {
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.modal p {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  font-weight: 600;
+  text-align: center;
+}
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+.choice-btn {
+  border: 3px solid var(--pink-soft);
+  background: #fff6fa;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.3;
+}
+.choice-btn:active { transform: scale(0.97); background: var(--pink-soft); }
+
+/* confetti / sparkles fx */
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  overflow: hidden;
+}
+.sparkle-particle {
+  position: absolute;
+  font-size: 20px;
+  animation: sparkleUp 1.2s ease-out forwards;
+}
+@keyframes sparkleUp {
+  0% { transform: translateY(0) scale(0.5) rotate(0); opacity: 1; }
+  100% { transform: translateY(-120px) scale(1.2) rotate(40deg); opacity: 0; }
+}
+
+.combo-flash {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--pink-deep);
+  text-shadow: 0 2px 0 white;
+  pointer-events: none;
+  animation: comboPop 0.7s ease-out forwards;
+}
+@keyframes comboPop {
+  0% { transform: translate(-50%,-50%) scale(0.5); opacity: 0; }
+  30% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%,-80%) scale(1); opacity: 0; }
+}
+
+/* character svg wrapper */
+.char-svg { width: 100%; height: 100%; display: block; }
+
+/* toast */
+.toast {
+  position: fixed;
+  top: calc(58px + var(--safe-top));
+  left: 50%;
+  transform: translateX(-50%) translateY(-80px);
+  background: white;
+  border: 3px solid var(--mint);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: var(--shadow-lg);
+  z-index: 70;
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+  max-width: 90vw;
+  text-align: center;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* hearts row */
+.hearts { letter-spacing: 2px; font-size: 18px; }
+
+/* list rows */
+.row-list { display: flex; flex-direction: column; gap: 8px; }
+.row-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff6fa;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  border: 2px solid #ffe0ec;
+  font-weight: 700;
+  font-size: 13px;
+}
+.row-item .emoji { font-size: 22px; }
+
+@media (min-width: 500px) {
+  .board { width: 400px; }
+  .quick-actions { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bg-sparkles" id="bgSparkles"></div>
+
+  <!-- ============ TITLE ============ -->
+  <section id="screen-title" class="screen active">
+    <div class="title-characters logo-bounce" id="titleChars"></div>
+    <h1 class="title-main logo-bounce">Starberry Café</h1>
+    <p class="title-sub">Merge magic ingredients, solve number puzzles, and help your K-pop animal friends shine! 🌟</p>
+    <div class="hearts" id="titleHearts"></div>
+    <button class="btn btn-primary" id="btnPlay">▶ Play!</button>
+    <button class="btn btn-secondary" id="btnContinue" style="display:none">Continue ✨</button>
+    <button class="btn btn-small" id="btnHow">How to play 💡</button>
+  </section>
+
+  <!-- ============ CAFE HUB ============ -->
+  <section id="screen-cafe" class="screen">
+    <div class="hud">
+      <div class="hud-left">
+        <div class="pill"><span class="icon">🍓</span><span id="hudBerries">0</span></div>
+        <div class="pill"><span class="icon">⭐</span><span id="hudStars">0</span></div>
+      </div>
+      <div class="hud-right">
+        <button class="btn btn-icon" id="btnSound" title="Sound">🔊</button>
+        <button class="btn btn-icon" id="btnSettings" title="Settings">⚙️</button>
+      </div>
+    </div>
+    <div class="cafe-body">
+      <div class="card" id="customerCard">
+        <div class="card-title">🎀 Today's Guest</div>
+        <div class="customer-area">
+          <div class="customer-art" id="customerArt"></div>
+          <div class="customer-info">
+            <div class="customer-name" id="customerName">...</div>
+            <div class="bubble" id="customerBubble">...</div>
+            <div class="order-chips" id="orderChips"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">✨ Café Level</div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span id="levelLabel">Level 1</span>
+            <span id="levelXp">0 / 100 XP</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="levelFill" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-btn q-merge" id="goMerge"><span class="ico">🧩</span>Play!</button>
+        <button class="quick-btn q-math" id="goMath"><span class="ico">🔢</span>Brain Spark</button>
+        <button class="quick-btn q-stage" id="goStage"><span class="ico">🎤</span>Stage</button>
+        <button class="quick-btn q-dress" id="goDress"><span class="ico">👗</span>Dress</button>
+      </div>
+
+      <div class="story-ticker">
+        <div class="card-title" style="margin-bottom:4px">📖 Story</div>
+        <p id="storyTicker">Welcome to Starberry Town…</p>
+        <button class="btn btn-small" id="goStory" style="margin-top:10px">Open Story Book</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MERGE ============ -->
+  <section id="screen-merge" class="screen">
+    <div class="merge-header">
+      <button class="btn btn-icon" id="mergeBack">←</button>
+      <h2>🍓 Merge Kitchen</h2>
+      <div class="merge-meta">
+        <div class="pill"><span class="icon">👣</span><span id="mergeMoves">20</span></div>
+      </div>
+    </div>
+    <div class="board-wrap">
+      <div class="goal-box" id="mergeGoal">🎯 Make: —</div>
+      <div class="board" id="mergeBoard"></div>
+      <div class="spawn-preview" id="spawnPreview">Next: —</div>
+    </div>
+    <div class="merge-actions">
+      <button class="btn btn-small" id="mergeHint">💡 Hint</button>
+      <button class="btn btn-small" id="mergeShuffle">🔀 Mix</button>
+      <button class="btn btn-small" id="mergeQuit">✕ Leave</button>
+    </div>
+  </section>
+
+  <!-- ============ MATH ============ -->
+  <section id="screen-math" class="screen math-screen">
+    <div class="merge-header" style="padding:0 0 4px">
+      <button class="btn btn-icon" id="mathBack">←</button>
+      <h2>🔢 Brain Spark</h2>
+      <div class="pill"><span class="icon">❓</span><span id="mathNum">1/5</span></div>
+    </div>
+    <div class="math-card">
+      <div id="mathCharacter" style="width:80px;height:80px;margin:0 auto"></div>
+      <div class="math-story" id="mathStory"></div>
+      <div class="math-prompt" id="mathPrompt"></div>
+      <div class="math-options" id="mathOptions"></div>
+      <div class="math-feedback" id="mathFeedback"></div>
+    </div>
+    <button class="btn btn-secondary" id="mathNext" style="display:none">Continue →</button>
+    <div class="hearts" id="mathHearts" style="text-align:center"></div>
+  </section>
+
+  <!-- ============ STAGE ============ -->
+  <section id="screen-stage" class="screen">
+    <div class="merge-header">
+      <button class="btn btn-icon" id="stageBack">←</button>
+      <h2>🎤 K-Pop Stage</h2>
+      <div class="pill"><span class="icon">🎵</span><span id="stageSong">Sparkle</span></div>
+    </div>
+    <div class="stage-body">
+      <div class="score-row">
+        <span>⭐ <span id="stageScore">0</span></span>
+        <span>🔥 x<span id="stageCombo">0</span></span>
+        <span>💗 <span id="stageLives">5</span></span>
+      </div>
+      <div class="stage-scene" id="stageScene">
+        <div class="stage-lights"></div>
+        <div class="stage-floor"></div>
+        <div class="stage-crowd" id="stageCrowd">🐰 🐿️ 🦄 🐱 🐹 🐰 🐿️ 🦄</div>
+        <div class="stage-performer" id="stagePerformer"></div>
+      </div>
+      <div class="rhythm-ui">
+        <div class="rhythm-lanes" id="rhythmLanes">
+          <div class="lane" data-lane="0"><div class="hit-zone">💗</div></div>
+          <div class="lane" data-lane="1"><div class="hit-zone">⭐</div></div>
+          <div class="lane" data-lane="2"><div class="hit-zone">✨</div></div>
+        </div>
+        <div class="lane-btns">
+          <button class="lane-btn l0" data-lane="0">💗</button>
+          <button class="lane-btn l1" data-lane="1">⭐</button>
+          <button class="lane-btn l2" data-lane="2">✨</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="stageStart" style="width:100%;max-width:400px">🎵 Start Show!</button>
+      <button class="btn btn-secondary" id="stagePick">Choose Idol</button>
+    </div>
+  </section>
+
+  <!-- ============ DRESS ============ -->
+  <section id="screen-dress" class="screen">
+    <div class="merge-header">
+      <button class="btn btn-icon" id="dressBack">←</button>
+      <h2>👗 Dress-Up Studio</h2>
+      <div class="pill"><span class="icon">⭐</span><span id="dressStars">0</span></div>
+    </div>
+    <div class="dress-body">
+      <div class="doll-stage">
+        <div id="dressAvatar" style="width:140px;height:140px"></div>
+        <div style="font-weight:900" id="dressWho">Mochi</div>
+        <div class="hearts" id="dressAccs"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎨 Pick an Idol</div>
+        <div class="wardrobe" id="dressChars"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎀 Outfits</div>
+        <div class="wardrobe" id="dressOutfits"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">✨ Accessories</div>
+        <div class="wardrobe" id="dressHats"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORY ============ -->
+  <section id="screen-story" class="screen">
+    <div class="merge-header">
+      <button class="btn btn-icon" id="storyBack">←</button>
+      <h2>📖 Story Book</h2>
+      <div class="pill" id="storyCount">0/6</div>
+    </div>
+    <div class="story-body" id="storyList"></div>
+  </section>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="mainNav" style="display:none">
+    <button class="nav-btn" data-screen="cafe"><span class="ico">🏠</span>Café</button>
+    <button class="nav-btn" data-screen="merge"><span class="ico">🧩</span>Play</button>
+    <button class="nav-btn" data-screen="math"><span class="ico">🔢</span>Brain</button>
+    <button class="nav-btn" data-screen="stage"><span class="ico">🎤</span>Stage</button>
+    <button class="nav-btn" data-screen="dress"><span class="ico">👗</span>Dress</button>
+    <button class="nav-btn" data-screen="story"><span class="ico">📖</span>Story</button>
+  </nav>
+</div>
+
+<!-- MODALS -->
+<div class="modal-backdrop" id="modalRoot">
+  <div class="modal" id="modalBox"></div>
+</div>
+<div class="fx-layer" id="fxLayer"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   STARBERRY CAFÉ — a cozy merge & math adventure
+   Single-file game for ages ~6–10
+   ============================================================ */
+
+'use strict';
+
+/* ---------- UTIL ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const rnd = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
+const pick = (arr) => arr[rnd(0, arr.length-1)];
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+
+/* ---------- AUDIO ENGINE (Web Audio) ---------- */
+const AudioEngine = {
+  ctx: null,
+  master: null,
+  musicGain: null,
+  sfxGain: null,
+  enabled: true,
+  musicOn: true,
+  _musicTimer: null,
+  _step: 0,
+
+  init() {
+    if (this.ctx) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    this.ctx = new AC();
+    this.master = this.ctx.createGain();
+    this.master.gain.value = 0.55;
+    this.master.connect(this.ctx.destination);
+    this.musicGain = this.ctx.createGain();
+    this.musicGain.gain.value = 0.22;
+    this.musicGain.connect(this.master);
+    this.sfxGain = this.ctx.createGain();
+    this.sfxGain.gain.value = 0.45;
+    this.sfxGain.connect(this.master);
+  },
+
+  resume() {
+    this.init();
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+  },
+
+  tone(freq, dur, type='sine', vol=0.3, when=0, dest=null) {
+    if (!this.enabled || !this.ctx) return;
+    const t0 = this.ctx.currentTime + when;
+    const o = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    o.type = type;
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(vol, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g);
+    g.connect(dest || this.sfxGain);
+    o.start(t0);
+    o.stop(t0 + dur + 0.05);
+  },
+
+  noise(dur=0.08, vol=0.15) {
+    if (!this.enabled || !this.ctx) return;
+    const t0 = this.ctx.currentTime;
+    const bufferSize = this.ctx.sampleRate * dur;
+    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random()*2-1) * (1 - i/bufferSize);
+    const src = this.ctx.createBufferSource();
+    src.buffer = buffer;
+    const g = this.ctx.createGain();
+    g.gain.value = vol;
+    src.connect(g);
+    g.connect(this.sfxGain);
+    src.start(t0);
+  },
+
+  // ---- SFX ----
+  sfx(name) {
+    this.resume();
+    switch(name) {
+      case 'tap':
+        this.tone(660, 0.08, 'sine', 0.2);
+        this.tone(880, 0.06, 'sine', 0.12, 0.03);
+        break;
+      case 'pop':
+        this.tone(520, 0.07, 'triangle', 0.28);
+        this.tone(780, 0.1, 'sine', 0.2, 0.04);
+        this.noise(0.04, 0.08);
+        break;
+      case 'merge':
+        this.tone(440, 0.08, 'triangle', 0.25);
+        this.tone(554, 0.08, 'triangle', 0.25, 0.06);
+        this.tone(659, 0.14, 'triangle', 0.28, 0.12);
+        this.noise(0.05, 0.06);
+        break;
+      case 'coin':
+        this.tone(988, 0.06, 'square', 0.12);
+        this.tone(1319, 0.12, 'square', 0.1, 0.05);
+        break;
+      case 'correct':
+        [523, 659, 784, 1047].forEach((f,i) => this.tone(f, 0.12, 'triangle', 0.22, i*0.08));
+        break;
+      case 'wrong':
+        this.tone(200, 0.15, 'sawtooth', 0.1);
+        this.tone(160, 0.2, 'sawtooth', 0.1, 0.08);
+        break;
+      case 'cheer':
+        for (let i=0;i<8;i++) this.tone(rnd(500,900), 0.1, 'sine', 0.08, i*0.05);
+        this.noise(0.3, 0.06);
+        break;
+      case 'fanfare':
+        [523,523,523,659,784,1047].forEach((f,i) =>
+          this.tone(f, i<3?0.1:0.25, 'triangle', 0.25, i*0.12));
+        break;
+      case 'sparkle':
+        [1047, 1319, 1568, 2093].forEach((f,i) => this.tone(f, 0.1, 'sine', 0.12, i*0.04));
+        break;
+      case 'bounce':
+        this.tone(300, 0.08, 'sine', 0.15);
+        this.tone(500, 0.1, 'sine', 0.15, 0.05);
+        break;
+      case 'heart':
+        this.tone(400, 0.08, 'sine', 0.15);
+        this.tone(600, 0.12, 'sine', 0.15, 0.06);
+        this.tone(800, 0.15, 'sine', 0.12, 0.12);
+        break;
+      case 'drum':
+        this.tone(80, 0.1, 'sine', 0.3);
+        this.noise(0.03, 0.1);
+        break;
+      case 'hit':
+        this.tone(600, 0.06, 'square', 0.1);
+        this.tone(900, 0.08, 'sine', 0.12, 0.02);
+        break;
+      case 'miss':
+        this.tone(120, 0.15, 'sawtooth', 0.08);
+        break;
+    }
+  },
+
+  /* Cute looping melody — original, light, music-box vibe */
+  startMusic() {
+    this.resume();
+    if (!this.musicOn || this._musicTimer) return;
+    // Melody in C major pentatonic — dreamy café tune
+    const melody = [
+      72, 76, 79, 76, 72, 74, 76, 74,
+      72, 76, 79, 84, 79, 76, 74, 72,
+      67, 72, 76, 72, 67, 69, 72, 69,
+      72, 74, 76, 79, 84, 79, 76, 72
+    ];
+    const bass = [
+      48, 48, 55, 55, 48, 48, 50, 50,
+      48, 48, 55, 55, 52, 52, 50, 50,
+      43, 43, 48, 48, 43, 43, 45, 45,
+      48, 50, 52, 55, 52, 55, 50, 48
+    ];
+    const stepDur = 0.28;
+    this._step = 0;
+    const playStep = () => {
+      if (!this.musicOn || !this.enabled) return;
+      const i = this._step % melody.length;
+      const f = 440 * Math.pow(2, (melody[i]-69)/12);
+      this.tone(f, stepDur*1.5, 'sine', 0.12, 0, this.musicGain);
+      // soft harmony
+      this.tone(f*1.5, stepDur*1.2, 'sine', 0.05, 0, this.musicGain);
+      if (i % 2 === 0) {
+        const bf = 440 * Math.pow(2, (bass[i]-69)/12);
+        this.tone(bf, stepDur*1.8, 'triangle', 0.08, 0, this.musicGain);
+      }
+      // gentle chime every 8
+      if (i % 8 === 0) {
+        this.tone(f*2, stepDur*3, 'sine', 0.04, 0.01, this.musicGain);
+      }
+      this._step++;
+      this._musicTimer = setTimeout(playStep, stepDur * 1000);
+    };
+    playStep();
+  },
+
+  stopMusic() {
+    if (this._musicTimer) {
+      clearTimeout(this._musicTimer);
+      this._musicTimer = null;
+    }
+  },
+
+  toggle() {
+    this.enabled = !this.enabled;
+    if (!this.enabled) this.stopMusic();
+    else if (this.musicOn) this.startMusic();
+    return this.enabled;
+  }
+};
+
+/* ---------- CUTE SVG CHARACTERS ---------- */
+const Chars = {
+  palette: {
+    mochi:   { fur:'#fff0f5', ear:'#ffc2d6', nose:'#ff8fb8', cheek:'#ffb6c9', accent:'#ff5d9a' },
+    pip:     { fur:'#f5d6a8', ear:'#e8b87a', nose:'#c98a4a', cheek:'#f0b090', accent:'#e89b3a' },
+    nova:    { fur:'#f0e6ff', ear:'#d4b8ff', nose:'#c9a7ff', cheek:'#e0c8ff', accent:'#9b6dff' },
+    kiki:    { fur:'#fff8e8', ear:'#f5d060', nose:'#f0a0b0', cheek:'#ffc8d0', accent:'#f45d96' },
+    boba:    { fur:'#ffe8c8', ear:'#f0c890', nose:'#e89b3a', cheek:'#ffc090', accent:'#f0a040' },
+    luna:    { fur:'#e0f4ff', ear:'#a8d8f0', nose:'#8ecae6', cheek:'#b0e0f0', accent:'#4a90c8' },
+    mimi:    { fur:'#fce4ec', ear:'#f8bbd0', nose:'#f06292', cheek:'#f48fb1', accent:'#ec407a' },
+    tux:     { fur:'#e8eef5', ear:'#b0c4d8', nose:'#607d8b', cheek:'#c5d8e8', accent:'#455a64' },
+  },
+
+  // Big kawaii SVG face / body
+  draw(kind, outfit=null, hat=null) {
+    const p = this.palette[kind] || this.palette.mochi;
+    const hatSvg = this.hatSvg(hat, p);
+    const outfitSvg = this.outfitSvg(outfit, p);
+
+    let ears = '';
+    if (kind === 'mochi' || kind === 'mimi') {
+      // bunny ears
+      ears = `
+        <ellipse cx="34" cy="22" rx="11" ry="28" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5" transform="rotate(-12 34 22)"/>
+        <ellipse cx="34" cy="24" rx="6" ry="18" fill="${p.ear}" transform="rotate(-12 34 22)"/>
+        <ellipse cx="66" cy="22" rx="11" ry="28" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5" transform="rotate(12 66 22)"/>
+        <ellipse cx="66" cy="24" rx="6" ry="18" fill="${p.ear}" transform="rotate(12 66 22)"/>`;
+    } else if (kind === 'pip') {
+      // squirrel ears + big tail hint
+      ears = `
+        <ellipse cx="32" cy="28" rx="10" ry="12" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <ellipse cx="32" cy="28" rx="5" ry="6" fill="${p.ear}"/>
+        <ellipse cx="68" cy="28" rx="10" ry="12" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <ellipse cx="68" cy="28" rx="5" ry="6" fill="${p.ear}"/>
+        <path d="M78 78 Q105 70 108 42 Q110 22 94 18 Q82 16 78 36 Q74 58 78 78Z" fill="${p.ear}" stroke="${p.accent}" stroke-width="1.5"/>
+        <path d="M84 70 Q100 62 100 42 Q100 30 92 28 Q86 28 84 42 Q82 58 84 70Z" fill="${p.fur}" opacity="0.45"/>`;
+    } else if (kind === 'nova') {
+      // unicorn ears + horn
+      ears = `
+        <ellipse cx="32" cy="28" rx="9" ry="12" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5" transform="rotate(-15 32 28)"/>
+        <ellipse cx="32" cy="28" rx="4" ry="6" fill="${p.ear}" transform="rotate(-15 32 28)"/>
+        <ellipse cx="68" cy="28" rx="9" ry="12" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5" transform="rotate(15 68 28)"/>
+        <ellipse cx="68" cy="28" rx="4" ry="6" fill="${p.ear}" transform="rotate(15 68 28)"/>
+        <polygon points="50,8 44,32 56,32" fill="#ffe66d" stroke="#f0c040" stroke-width="1.5"/>
+        <line x1="45" y1="18" x2="55" y2="18" stroke="#f0c040" stroke-width="1.5"/>
+        <line x1="46" y1="24" x2="54" y2="24" stroke="#f0c040" stroke-width="1.5"/>
+        <path d="M28 40 Q20 20 35 15" fill="none" stroke="${p.accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+        <path d="M72 40 Q80 20 65 15" fill="none" stroke="${p.accent}" stroke-width="4" stroke-linecap="round" opacity="0.6"/>`;
+    } else if (kind === 'kiki') {
+      // cat ears
+      ears = `
+        <polygon points="28,40 22,12 44,28" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <polygon points="30,36 26,18 40,28" fill="${p.ear}"/>
+        <polygon points="72,40 78,12 56,28" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <polygon points="70,36 74,18 60,28" fill="${p.ear}"/>`;
+    } else if (kind === 'boba') {
+      // hamster round ears
+      ears = `
+        <circle cx="30" cy="28" r="11" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <circle cx="30" cy="28" r="5" fill="${p.ear}"/>
+        <circle cx="70" cy="28" r="11" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <circle cx="70" cy="28" r="5" fill="${p.ear}"/>`;
+    } else if (kind === 'luna') {
+      // bear ears
+      ears = `
+        <circle cx="30" cy="26" r="12" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <circle cx="30" cy="26" r="6" fill="${p.ear}"/>
+        <circle cx="70" cy="26" r="12" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+        <circle cx="70" cy="26" r="6" fill="${p.ear}"/>`;
+    } else if (kind === 'tux') {
+      // penguin (no top ears, flippers)
+      ears = `
+        <ellipse cx="18" cy="60" rx="8" ry="18" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5" transform="rotate(15 18 60)"/>
+        <ellipse cx="82" cy="60" rx="8" ry="18" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5" transform="rotate(-15 82 60)"/>`;
+    }
+
+    // whiskers for cat
+    let extras = '';
+    if (kind === 'kiki') {
+      extras = `
+        <line x1="10" y1="58" x2="28" y2="58" stroke="${p.accent}" stroke-width="1.2"/>
+        <line x1="10" y1="64" x2="28" y2="62" stroke="${p.accent}" stroke-width="1.2"/>
+        <line x1="72" y1="58" x2="90" y2="58" stroke="${p.accent}" stroke-width="1.2"/>
+        <line x1="72" y1="62" x2="90" y2="64" stroke="${p.accent}" stroke-width="1.2"/>`;
+    }
+    if (kind === 'tux') {
+      extras = `
+        <ellipse cx="50" cy="78" rx="22" ry="18" fill="white" opacity="0.95"/>
+        <ellipse cx="50" cy="55" rx="20" ry="14" fill="white" opacity="0.5"/>`;
+    }
+
+    return `<svg class="char-svg" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="g${kind}" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="white" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="${p.fur}"/>
+        </radialGradient>
+      </defs>
+      ${outfitSvg}
+      ${ears}
+      <!-- body -->
+      <ellipse cx="50" cy="88" rx="28" ry="18" fill="${p.fur}" stroke="${p.accent}" stroke-width="1.5"/>
+      <!-- head -->
+      <circle cx="50" cy="55" r="32" fill="url(#g${kind})" stroke="${p.accent}" stroke-width="1.5"/>
+      ${extras}
+      <!-- eyes -->
+      <ellipse cx="38" cy="54" rx="5.5" ry="6.5" fill="#2d2430"/>
+      <ellipse cx="62" cy="54" rx="5.5" ry="6.5" fill="#2d2430"/>
+      <circle cx="40" cy="52" r="2" fill="white"/>
+      <circle cx="64" cy="52" r="2" fill="white"/>
+      <circle cx="37" cy="57" r="1" fill="white" opacity="0.7"/>
+      <circle cx="61" cy="57" r="1" fill="white" opacity="0.7"/>
+      <!-- cheeks -->
+      <ellipse cx="28" cy="64" rx="6" ry="4" fill="${p.cheek}"/>
+      <ellipse cx="72" cy="64" rx="6" ry="4" fill="${p.cheek}"/>
+      <!-- nose / mouth -->
+      <ellipse cx="50" cy="62" rx="3.5" ry="2.5" fill="${p.nose}"/>
+      <path d="M44 68 Q50 74 56 68" fill="none" stroke="#2d2430" stroke-width="1.8" stroke-linecap="round"/>
+      ${hatSvg}
+    </svg>`;
+  },
+
+  hatSvg(hat, p) {
+    if (!hat) return '';
+    const h = {
+      crown: `<polygon points="35,22 38,10 44,18 50,6 56,18 62,10 65,22" fill="#ffe66d" stroke="#f0c040" stroke-width="1.5" transform="translate(0,18)"/>
+              <circle cx="50" cy="36" r="2.5" fill="#ff5d9a"/>`,
+      bow:   `<ellipse cx="22" cy="30" rx="8" ry="5" fill="#ff5d9a" transform="rotate(-25 22 30)"/>
+              <ellipse cx="38" cy="30" rx="8" ry="5" fill="#ff5d9a" transform="rotate(25 38 30)"/>
+              <circle cx="30" cy="30" r="3.5" fill="#ff8fb8"/>`,
+      star:  `<text x="50" y="28" text-anchor="middle" font-size="18">⭐</text>`,
+      headphones: `<rect x="18" y="42" width="8" height="16" rx="3" fill="#9b6dff"/>
+                   <rect x="74" y="42" width="8" height="16" rx="3" fill="#9b6dff"/>
+                   <path d="M22 44 Q50 20 78 44" fill="none" stroke="#9b6dff" stroke-width="4" stroke-linecap="round"/>`,
+      flower: `<circle cx="24" cy="30" r="4" fill="#ff8fb8"/>
+               <circle cx="18" cy="28" r="3.5" fill="#ffb5c8"/>
+               <circle cx="30" cy="28" r="3.5" fill="#ffb5c8"/>
+               <circle cx="22" cy="35" r="3.5" fill="#ffb5c8"/>
+               <circle cx="27" cy="35" r="3.5" fill="#ffb5c8"/>
+               <circle cx="24" cy="31" r="2" fill="#ffe66d"/>`,
+      beret: `<ellipse cx="50" cy="28" rx="22" ry="10" fill="#c9a7ff"/>
+              <circle cx="50" cy="18" r="3" fill="#9b6dff"/>`,
+    };
+    return h[hat] || '';
+  },
+
+  outfitSvg(outfit, p) {
+    if (!outfit) return `<ellipse cx="50" cy="90" rx="26" ry="16" fill="${p.fur}"/>`;
+    const o = {
+      cafe: `<ellipse cx="50" cy="90" rx="26" ry="16" fill="#ff8fb8"/>
+             <rect x="30" y="82" width="40" height="8" rx="3" fill="white"/>`,
+      idol: `<ellipse cx="50" cy="90" rx="26" ry="16" fill="#9b6dff"/>
+             <circle cx="50" cy="88" r="5" fill="#ffe66d"/>`,
+      star: `<ellipse cx="50" cy="90" rx="26" ry="16" fill="#ffe66d"/>
+             <text x="50" y="94" text-anchor="middle" font-size="10">⭐</text>`,
+      mint: `<ellipse cx="50" cy="90" rx="26" ry="16" fill="#2ec4b6"/>
+             <rect x="35" y="84" width="30" height="6" rx="3" fill="#7ddecb"/>`,
+      princess: `<ellipse cx="50" cy="90" rx="26" ry="16" fill="#ffb5c8"/>
+                 <circle cx="38" cy="88" r="2" fill="white"/><circle cx="50" cy="92" r="2" fill="white"/><circle cx="62" cy="88" r="2" fill="white"/>`,
+    };
+    return o[outfit] || `<ellipse cx="50" cy="90" rx="26" ry="16" fill="${p.fur}"/>`;
+  }
+};
+
+/* ---------- INGREDIENT / ITEM DEFS (merge chain) ---------- */
+const ITEMS = {
+  1: { emoji: '🌱', name: 'Seed',    color: '#7ddecb' },
+  2: { emoji: '🍓', name: 'Berry',   color: '#ff5d9a' },
+  3: { emoji: '🧁', name: 'Cupcake', color: '#ffb56b' },
+  4: { emoji: '🧋', name: 'Boba',    color: '#c9a7ff' },
+  5: { emoji: '🍰', name: 'Cake',    color: '#ff8fb8' },
+  6: { emoji: '🌈', name: 'Rainbow', color: '#ffe66d' },
+  7: { emoji: '⭐', name: 'Star',    color: '#ffe66d' },
+  8: { emoji: '👑', name: 'Crown',   color: '#f0c040' },
+};
+
+const OUTFITS = [
+  { id: 'cafe', emoji: '🎀', name: 'Café Apron', cost: 0, unlock: 0 },
+  { id: 'idol', emoji: '🎤', name: 'Idol Top', cost: 0, unlock: 0 },
+  { id: 'star', emoji: '⭐', name: 'Star Sweater', cost: 5, unlock: 2 },
+  { id: 'mint', emoji: '🍃', name: 'Mint Dress', cost: 8, unlock: 3 },
+  { id: 'princess', emoji: '👑', name: 'Princess Gown', cost: 15, unlock: 5 },
+];
+const HATS = [
+  { id: null, emoji: '🚫', name: 'None', cost: 0, unlock: 0 },
+  { id: 'bow', emoji: '🎀', name: 'Big Bow', cost: 0, unlock: 0 },
+  { id: 'flower', emoji: '🌸', name: 'Flower', cost: 3, unlock: 1 },
+  { id: 'star', emoji: '⭐', name: 'Star Clip', cost: 4, unlock: 2 },
+  { id: 'headphones', emoji: '🎧', name: 'DJ Phones', cost: 6, unlock: 3 },
+  { id: 'beret', emoji: '🎨', name: 'Beret', cost: 8, unlock: 4 },
+  { id: 'crown', emoji: '👑', name: 'Crown', cost: 12, unlock: 6 },
+];
+
+const PLAYABLE = ['mochi', 'pip', 'nova', 'kiki', 'boba', 'luna'];
+const CHAR_LABEL = {
+  mochi: 'Mochi 🐰', pip: 'Pip 🐿️', nova: 'Nova 🦄',
+  kiki: 'Kiki 🐱', boba: 'Boba 🐹', luna: 'Luna 🐻',
+  mimi: 'Mimi 🐰', tux: 'Tux 🐧'
+};
+
+/* ---------- STORY ---------- */
+const STORIES = [
+  {
+    id: 0,
+    title: 'A Dream in Starberry Town',
+    unlock: 0,
+    lines: [
+      { who: 'mochi', text: 'Oh! A little shop with a pink roof… this is it! My very own café!' },
+      { who: 'mochi', text: 'I want to make the yummiest drinks for all my idol friends…' },
+      { who: 'pip', text: 'Mochi! Did I hear café?! I can DJ the opening night! 🎧' },
+      { who: 'mochi', text: 'Yes! But first… we need magical Starberry ingredients.' },
+    ],
+    choice: {
+      question: 'How should we decorate the café sign?',
+      options: [
+        { label: '🌈 Rainbow sparkles everywhere!', reply: 'Pip: Whoa, so shiny! Everyone will see it from the hill!', reward: { stars: 2 } },
+        { label: '🍓 Giant strawberry on top', reply: 'Pip: Mmm! Now I want a berry smoothie already!', reward: { berries: 5 } },
+      ]
+    },
+    end: 'The adventure begins… ✨'
+  },
+  {
+    id: 1,
+    title: "Pip's Mix-Up",
+    unlock: 2,
+    lines: [
+      { who: 'pip', text: 'Oh nooo… my headphones are tangled in the berry vines again!' },
+      { who: 'mochi', text: 'If we untangle 3 loops, and there were 5 loops to start… how many are left?' },
+      { who: 'pip', text: 'Math in an emergency?! Fine fine… help me count!' },
+    ],
+    choice: {
+      question: 'Help Pip untangle the cables!',
+      options: [
+        { label: '🧠 Use a number trick (Brain Spark!)', reply: 'Pip: You are a genius! The cables are free and my mix is saved!', reward: { stars: 3 } },
+        { label: '✂️ Carefully snip one vine', reply: 'Pip: Careful!… Okay it worked. But I owe that vine an apology.', reward: { berries: 8 } },
+      ]
+    },
+    end: 'Pip’s playlist is saved! 🎵'
+  },
+  {
+    id: 2,
+    title: 'Nova’s Stage Fright',
+    unlock: 4,
+    lines: [
+      { who: 'nova', text: 'M-mochi… the concert is tonight and my horn light won’t turn on…' },
+      { who: 'mochi', text: 'Don’t worry! We just need to connect 4 star-stickers to make it shine.' },
+      { who: 'nova', text: 'What if everyone looks at me and I freeze like a popsicle?' },
+    ],
+    choice: {
+      question: 'What should Mochi say to Nova?',
+      options: [
+        { label: '💗 "I’ll be in the front row the whole time!"', reply: 'Nova: *sniff* …really? Then… then I can do it! For you!', reward: { stars: 4 } },
+        { label: '🌟 "Your song is so cute, even I dance to it!"', reply: 'Nova: Hehe… okay! I’ll sing extra sparkly tonight!', reward: { stars: 3, berries: 5 } },
+      ]
+    },
+    end: 'Nova’s horn glows like a tiny sun 🌟'
+  },
+  {
+    id: 3,
+    title: 'The Mystery of the Missing Boba',
+    unlock: 6,
+    lines: [
+      { who: 'boba', text: 'My tapioca pearls vanished!! Who would take them?!' },
+      { who: 'kiki', text: 'I saw little paw prints… three of them… going toward the garden.' },
+      { who: 'mochi', text: 'Three paw prints — and each print is one friend. How many feet is that?' },
+    ],
+    choice: {
+      question: 'Where should we look first?',
+      options: [
+        { label: '🌻 Sunflower patch', reply: 'Boba: There! Under the big flower — a baby hamster was saving them for a picnic!', reward: { berries: 10 } },
+        { label: '🍓 Berry bushes', reply: 'Kiki: Look! The pearls were rolling like marbles. I caught them all!', reward: { stars: 5 } },
+      ]
+    },
+    end: 'Boba shares pearls with everyone 🧋'
+  },
+  {
+    id: 4,
+    title: 'Kiki’s Remix Battle',
+    unlock: 8,
+    lines: [
+      { who: 'kiki', text: 'A dance battle?! Against DJ Whiskers from the next town? MEOW.' },
+      { who: 'pip', text: 'We need a combo: 3 spins + 2 jumps + 4 claps. Can you count the beats?' },
+      { who: 'nova', text: 'If we win, we get the Golden Mixer trophy!' },
+    ],
+    choice: {
+      question: 'What’s our battle motto?',
+      options: [
+        { label: '✨ "Sparkle harder than the spotlights!"', reply: 'Kiki: YEAH! My claws are ready to boogie!', reward: { stars: 6 } },
+        { label: '🤝 "Besties dance better together"', reply: 'Everyone: BESTIES! *group hug mid-pirouette*', reward: { stars: 4, berries: 8 } },
+      ]
+    },
+    end: 'The crowd throws flower petals 🌸'
+  },
+  {
+    id: 5,
+    title: 'The Starberry Festival',
+    unlock: 11,
+    lines: [
+      { who: 'mochi', text: 'Our café is famous! Look at this line of happy friends!' },
+      { who: 'nova', text: 'Tonight we all sing together — even Tux from the icy pond came!' },
+      { who: 'tux', text: '*happy penguin noises* 🐧' },
+      { who: 'mochi', text: 'This is the best day… thank you for building this dream with me.' },
+    ],
+    choice: {
+      question: 'How should we end the festival?',
+      options: [
+        { label: '🎆 Firework star-shower', reply: 'Everyone: WOOOOW! *the sky blooms in pink and gold*', reward: { stars: 10 } },
+        { label: '🍰 Share a giant dream cake', reply: 'Boba: *mouth full* …ith the bedt cake eber!', reward: { berries: 20, stars: 5 } },
+      ]
+    },
+    end: 'The End… or maybe just the beginning? 💖'
+  }
+];
+
+const TICKERS = [
+  'Welcome to Starberry Town — where every order is a tiny adventure! 🍓',
+  'Mochi says: "Two berries make a jam… what makes a smile?"',
+  'Pip’s tip: When you’re stuck on a number puzzle, try counting with your fingers — that’s magic too! 🖐️',
+  'Nova hums a song that makes the flowers dance…',
+  'Did you know? Squirrels hide snacks for winter. Pip hides cupcakes. 🧁',
+  'Kiki’s dance rule: if you can count the beat, you can dance! 💃',
+  'Boba’s boba wisdom: the sweetest pearls are the ones you share. 🧋',
+  'Every Brain Spark makes your brain a little sparklier! ✨',
+  'Unicorns believe in you. And so does the whole café! 🦄',
+];
+
+/* ---------- GAME STATE ---------- */
+const SAVE_KEY = 'starberry-cafe-v1';
+
+const Game = {
+  state: null,
+
+  defaultState() {
+    return {
+      berries: 10,
+      stars: 0,
+      xp: 0,
+      level: 1,
+      sound: true,
+      music: true,
+      selectedChar: 'mochi',
+      outfit: 'cafe',
+      hat: 'bow',
+      unlockedOutfits: ['cafe', 'idol'],
+      unlockedHats: [null, 'bow'],
+      storyDone: [],
+      currentStoryChoice: {},
+      customerIdx: 1,
+      mathBest: 0,
+      mergeWins: 0,
+      stageBest: 0,
+      createdAt: Date.now(),
+    };
+  },
+
+  load() {
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (raw) {
+        this.state = { ...this.defaultState(), ...JSON.parse(raw) };
+        return true;
+      }
+    } catch(e) {}
+    this.state = this.defaultState();
+    return false;
+  },
+
+  save() {
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(this.state)); } catch(e) {}
+  },
+
+  addBerries(n) {
+    this.state.berries = Math.max(0, this.state.berries + n);
+    this.save();
+    this.refreshHUD();
+  },
+
+  addStars(n) {
+    this.state.stars = Math.max(0, this.state.stars + n);
+    this.save();
+    this.refreshHUD();
+  },
+
+  addXp(n) {
+    this.state.xp += n;
+    const need = this.levelNeed(this.state.level);
+    while (this.state.xp >= need) {
+      this.state.xp -= need;
+      this.state.level++;
+      AudioEngine.sfx('fanfare');
+      burstSparkles();
+      showToast(`🎉 Level ${this.state.level}! You are amazing!`);
+      // unlock outfits/hats on level
+      OUTFITS.forEach(o => {
+        if (o.unlock === this.state.level && !this.state.unlockedOutfits.includes(o.id)) {
+          this.state.unlockedOutfits.push(o.id);
+          showToast(`👗 Unlocked: ${o.name}!`);
+        }
+      });
+      HATS.forEach(h => {
+        if (h.unlock === this.state.level && !this.state.unlockedHats.includes(h.id)) {
+          this.state.unlockedHats.push(h.id);
+          showToast(`🎀 Unlocked: ${h.name}!`);
+        }
+      });
+    }
+    this.save();
+    this.refreshHUD();
+  },
+
+  levelNeed(lv) { return 80 + lv * 40; },
+
+  refreshHUD() {
+    const s = this.state;
+    const set = (id, v) => { const el = $(id); if (el) el.textContent = v; };
+    set('#hudBerries', s.berries);
+    set('#hudStars', s.stars);
+    set('#dressStars', s.stars);
+    set('#levelLabel', `Level ${s.level}`);
+    const need = this.levelNeed(s.level);
+    set('#levelXp', `${s.xp} / ${need} XP`);
+    const fill = $('#levelFill');
+    if (fill) fill.style.width = `${Math.min(100, (s.xp / need) * 100)}%`;
+  }
+};
+
+/* ---------- CUSTOMERS ---------- */
+const CUSTOMERS = [
+  { name: 'Mochi', kind: 'mochi', hello: 'Welcome, welcome! Let’s make something yummy together!', orders: ['Berry Latte', 'Star Cake'] },
+  { name: 'Pip', kind: 'pip', hello: 'Yo! Something sweet — and maybe with caffeine? For the mix!', orders: ['Bobalicious', 'Beat Cupcake'] },
+  { name: 'Nova', kind: 'nova', hello: 'Um… could I have something sparkly? Please?', orders: ['Rainbow Shake', 'Moon Cake'] },
+  { name: 'Kiki', kind: 'kiki', hello: 'MEOW. Something with style. And cream. Lots of cream.', orders: ['Catpuccino', 'Fancy Cake'] },
+  { name: 'Boba', kind: 'boba', hello: 'Boba boba! Extra pearls please!!', orders: ['Mega Boba', 'Honey Cupcake'] },
+  { name: 'Luna', kind: 'luna', hello: 'Hello friend… a cozy drink for a cozy day?', orders: ['Honey Milk', 'Star Cookie'] },
+  { name: 'Mimi', kind: 'mimi', hello: 'Hehe~ surprise me with the cutest thing you have!', orders: ['Pink Shake', 'Hearts Cake'] },
+  { name: 'Tux', kind: 'tux', hello: '*shivers* …something warm? Pretty please?', orders: ['Hot Cocoa', 'Snow Cake'] },
+];
+
+/* ---------- MATH PUZZLE GENERATOR (age ~6–10) ---------- */
+const MathPuzzles = {
+  generate(level) {
+    // level 1-2: add/sub within 20
+    // level 3-4: add/sub within 50, missing addend
+    // level 5-6: x2 / x5 / x10, simple word
+    // level 7+: mixed, coins, patterns
+    const tier = level < 3 ? 1 : level < 5 ? 2 : level < 7 ? 3 : 4;
+    const kinds = tier === 1 ? ['add', 'sub', 'count']
+                : tier === 2 ? ['add', 'sub', 'missing', 'count']
+                : tier === 3 ? ['add', 'sub', 'missing', 'mul', 'word']
+                : ['add', 'sub', 'missing', 'mul', 'word', 'coin', 'pattern'];
+    const kind = pick(kinds);
+
+    const emojiPick = pick(['🍓','🧁','🧋','⭐','🌸','🍬','🍪','🌈']);
+
+    if (kind === 'add') {
+      const max = tier === 1 ? 12 : tier === 2 ? 25 : 40;
+      const a = rnd(1, max-1), b = rnd(1, max-a);
+      return {
+        story: `${emojiPick.repeat(Math.min(a, 6))} … more arrive!`,
+        prompt: `${a} + ${b} = ?`,
+        answer: a + b,
+        choices: this.distractors(a+b),
+      };
+    }
+    if (kind === 'sub') {
+      const max = tier === 1 ? 15 : tier === 2 ? 30 : 50;
+      const a = rnd(5, max), b = rnd(1, a-1);
+      return {
+        story: `You had ${a} ${emojiPick} and shared ${b} with a friend.`,
+        prompt: `${a} − ${b} = ?`,
+        answer: a - b,
+        choices: this.distractors(a-b),
+      };
+    }
+    if (kind === 'count') {
+      const n = rnd(3, 9);
+      return {
+        story: 'Count the cuties!',
+        prompt: emojiPick.repeat(n),
+        answer: n,
+        choices: this.distractors(n),
+        isCount: true,
+      };
+    }
+    if (kind === 'missing') {
+      const a = rnd(2, 20), ans = rnd(1, 15), b = a + ans;
+      return {
+        story: `What number hides under the ❓?`,
+        prompt: `${a} + ❓ = ${b}`,
+        answer: ans,
+        choices: this.distractors(ans),
+      };
+    }
+    if (kind === 'mul') {
+      const tables = [2, 5, 10];
+      const t = pick(tables);
+      const n = rnd(1, tier === 3 ? 5 : 8);
+      return {
+        story: `${n} friends each have ${t} ${emojiPick}.`,
+        prompt: `${n} × ${t} = ?`,
+        answer: n * t,
+        choices: this.distractors(n * t),
+      };
+    }
+    if (kind === 'word') {
+      const have = rnd(3, 12), want = rnd(have+2, have+10);
+      return {
+        story: `Boba has ${have} ${emojiPick}. She wants ${want}.`,
+        prompt: `How many more does she need?`,
+        answer: want - have,
+        choices: this.distractors(want - have),
+      };
+    }
+    if (kind === 'coin') {
+      // simple cents with 5s and 10s
+      const fives = rnd(1, 4), tens = rnd(0, 3);
+      const total = fives*5 + tens*10;
+      return {
+        story: `${fives}× 5¢  and  ${tens}× 10¢`,
+        prompt: `How many cents in all?`,
+        answer: total,
+        choices: this.distractors(total, 5),
+      };
+    }
+    // pattern
+    const start = rnd(2, 5), step = rnd(2, 5);
+    const seq = [start, start+step, start+2*step, start+3*step];
+    const ans = start+4*step;
+    return {
+      story: 'What comes next?',
+      prompt: `${emojiPick} ${seq.join(', ')}, ❓`,
+      answer: ans,
+      choices: this.distractors(ans),
+    };
+  },
+
+  distractors(ans, spread=4) {
+    const set = new Set([ans]);
+    let guard = 0;
+    while (set.size < 4 && guard++ < 50) {
+      const d = ans + rnd(-spread, spread);
+      if (d >= 0 && d !== ans) set.add(d);
+    }
+    while (set.size < 4) set.add(ans + set.size + 1);
+    return this.shuffle([...set]);
+  },
+
+  shuffle(arr) {
+    for (let i = arr.length-1; i > 0; i--) {
+      const j = rnd(0, i);
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+};
+
+/* ---------- SCREEN ROUTER ---------- */
+const Screens = {
+  current: 'title',
+
+  show(name) {
+    $$('.screen').forEach(s => s.classList.remove('active'));
+    const el = $('#screen-' + name);
+    if (el) el.classList.add('active');
+    this.current = name;
+
+    const nav = $('#mainNav');
+    if (name === 'title') nav.style.display = 'none';
+    else nav.style.display = 'flex';
+
+    $$('.nav-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.screen === name);
+    });
+
+    if (name === 'cafe') UI.renderCustomer();
+    if (name === 'merge') Merge.start();
+    if (name === 'math') MathGame.start();
+    if (name === 'stage') Stage.renderIdle();
+    if (name === 'dress') Dress.render();
+    if (name === 'story') Story.renderList();
+
+    if (name !== 'stage') Stage.stop();
+    if (name !== 'merge') Merge.active = false;
+
+    if (Game.state.sound) AudioEngine.sfx('tap');
+  }
+};
+
+/* ---------- UI HELPERS ---------- */
+function showToast(msg, ms=2400) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+function burstSparkles(x, y, n=12) {
+  const layer = $('#fxLayer');
+  const cx = x ?? window.innerWidth/2;
+  const cy = y ?? window.innerHeight/2;
+  const emojis = ['✨','⭐','💗','🌟','💖','✨'];
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle-particle';
+    s.textContent = pick(emojis);
+    s.style.left = (cx + rnd(-40, 40)) + 'px';
+    s.style.top = (cy + rnd(-20, 20)) + 'px';
+    s.style.animationDelay = (i * 0.04) + 's';
+    layer.appendChild(s);
+    setTimeout(() => s.remove(), 1400);
+  }
+}
+
+function flashText(el, text) {
+  const f = document.createElement('div');
+  f.className = 'combo-flash';
+  f.textContent = text;
+  el.style.position = 'relative';
+  el.appendChild(f);
+  setTimeout(() => f.remove(), 800);
+}
+
+function openModal(html) {
+  $('#modalBox').innerHTML = html;
+  $('#modalRoot').classList.add('show');
+}
+function closeModal() {
+  $('#modalRoot').classList.remove('show');
+}
+
+/* ---------- UI / CAFE ---------- */
+const UI = {
+  renderCustomer() {
+    const c = CUSTOMERS[Game.state.customerIdx % CUSTOMERS.length];
+    $('#customerArt').innerHTML = Chars.draw(c.kind);
+    $('#customerName').textContent = c.name + ' 💕';
+    $('#customerBubble').textContent = c.hello;
+    const chips = $('#orderChips');
+    chips.innerHTML = '';
+    c.orders.forEach(o => {
+      const el = document.createElement('div');
+      el.className = 'chip';
+      el.textContent = '🍽️ ' + o;
+      chips.appendChild(el);
+    });
+    // math order chip
+    const mc = document.createElement('div');
+    mc.className = 'chip math';
+    mc.textContent = '🔢 Order needs help!';
+    chips.appendChild(mc);
+
+    // ticker
+    $('#storyTicker').textContent = TICKERS[Game.state.customerIdx % TICKERS.length];
+  },
+
+  nextCustomer() {
+    Game.state.customerIdx = (Game.state.customerIdx + 1) % CUSTOMERS.length;
+    Game.save();
+    this.renderCustomer();
+  }
+};
+
+/* ---------- MERGE GAME ---------- */
+const Merge = {
+  W: 5,
+  H: 5,
+  grid: null,       // 0 empty, or level 1-8
+  moves: 20,
+  goalLevel: 2,
+  nextSpawn: 1,
+  selected: null,
+  active: false,
+  won: false,
+
+  start() {
+    this.active = true;
+    this.won = false;
+    this.moves = 20;
+    this.goalLevel = this.pickGoal();
+    this.nextSpawn = rnd(1, 2);
+    this.selected = null;
+    this.grid = new Array(this.W * this.H).fill(0);
+    // seed a few
+    this.grid[rnd(0,24)] = 1;
+    this.grid[rnd(0,24)] = 1;
+    this.grid[rnd(0,24)] = 2;
+    this.grid[rnd(0,24)] = 1;
+    this.render();
+    if (Game.state.mergeWins === 0) {
+      showToast('Tap an empty box to drop, tap two twins to merge! 🍓');
+    }
+  },
+
+  pickGoal() {
+    const lv = Game.state.level;
+    if (lv < 2) return 2;
+    if (lv < 4) return pick([2, 3]);
+    if (lv < 6) return pick([3, 4]);
+    return pick([3, 4, 5]);
+  },
+
+  goalLabel() {
+    const it = ITEMS[this.goalLevel];
+    return `🎯 Make a ${it.name} ${it.emoji}`;
+  },
+
+  render() {
+    const board = $('#mergeBoard');
+    board.innerHTML = '';
+    for (let i = 0; i < this.grid.length; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.dataset.idx = i;
+      const v = this.grid[i];
+      if (v) {
+        cell.classList.add('filled');
+        const it = ITEMS[v];
+        cell.innerHTML = `<div class="item-art">${it.emoji}</div><div class="item-label">${it.name}</div>`;
+        if (this.selected === i) cell.classList.add('selected');
+      }
+      cell.addEventListener('pointerdown', (e) => this.onTap(i, e));
+      board.appendChild(cell);
+    }
+    $('#mergeMoves').textContent = this.moves;
+    $('#mergeGoal').textContent = this.goalLabel();
+    const nx = ITEMS[this.nextSpawn];
+    $('#spawnPreview').innerHTML = `Next: ${nx.emoji} ${nx.name}`;
+  },
+
+  onTap(i, e) {
+    if (!this.active || this.won) return;
+    AudioEngine.resume();
+    AudioEngine.sfx('tap');
+
+    const v = this.grid[i];
+    if (this.selected === null) {
+      if (v) {
+        this.selected = i;
+        this.render();
+      } else {
+        // place next spawn
+        this.place(i);
+      }
+    } else {
+      if (i === this.selected) {
+        this.selected = null;
+        this.render();
+      } else if (v === 0) {
+        // move
+        this.grid[i] = this.grid[this.selected];
+        this.grid[this.selected] = 0;
+        this.selected = null;
+        this.moves--;
+        AudioEngine.sfx('bounce');
+        this.afterAction();
+      } else if (v === this.grid[this.selected]) {
+        // merge!
+        this.mergeCells(this.selected, i);
+      } else {
+        // select the other instead
+        this.selected = i;
+        this.render();
+      }
+    }
+  },
+
+  place(i) {
+    if (this.grid[i] !== 0) return;
+    this.grid[i] = this.nextSpawn;
+    this.nextSpawn = Math.random() < 0.7 ? 1 : 2;
+    this.moves--;
+    AudioEngine.sfx('pop');
+    this.afterAction(true);
+  },
+
+  mergeCells(from, to) {
+    const lvl = this.grid[from];
+    if (lvl >= 8) {
+      // two crowns -> sparkle party
+      this.grid[from] = 0;
+      this.grid[to] = 0;
+      this.moves--;
+      Game.addStars(2);
+      burstSparkles(null, null, 16);
+      AudioEngine.sfx('fanfare');
+      showToast('✨ Crown party! +2 ⭐');
+      this.afterAction();
+      return;
+    }
+    const next = lvl + 1;
+    this.grid[from] = 0;
+    this.grid[to] = next;
+    this.selected = null;
+    this.moves--;
+    AudioEngine.sfx('merge');
+
+    // pop animation
+    this.render();
+    const cell = $$('#mergeBoard .cell')[to];
+    if (cell) cell.classList.add('pop');
+
+    if (next === this.goalLevel && !this.won) {
+      this.won = true;
+      this.render();
+      setTimeout(() => this.victory(to), 400);
+    } else if (next > this.goalLevel) {
+      // still counts as nice — reward
+      Game.addBerries(1);
+      showToast(`${ITEMS[next].emoji} Fancy! +1 🍓`);
+      this.afterAction();
+    } else {
+      this.afterAction();
+    }
+  },
+
+  afterAction(spawnPop=false) {
+    if (this.won) return;
+    // auto-merge check? no, player-driven.
+    this.render();
+    if (spawnPop) {
+      // flash last placed — handled by render
+    }
+    if (this.moves <= 0) this.defeat();
+  },
+
+  victory(idx) {
+    AudioEngine.sfx('fanfare');
+    AudioEngine.sfx('cheer');
+    const cell = $$('#mergeBoard .cell')[idx];
+    const rect = cell ? cell.getBoundingClientRect() : null;
+    burstSparkles(rect?.left + 30, rect?.top + 30, 18);
+    Game.addStars(2 + Game.state.level);
+    Game.addBerries(4);
+    Game.addXp(25);
+    Game.state.mergeWins++;
+    Game.save();
+    UI.nextCustomer();
+    openModal(`
+      <h2>🎉 Amazing!</h2>
+      <p>You made a <b>${ITEMS[this.goalLevel].emoji} ${ITEMS[this.goalLevel].name}</b>!<br>
+      Your guest is so happy!</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="Merge.start(); closeModal();">Play again 🍓</button>
+        <button class="btn btn-secondary" onclick="Screens.show('cafe'); closeModal();">Back to Café</button>
+      </div>
+    `);
+  },
+
+  defeat() {
+    AudioEngine.sfx('wrong');
+    openModal(`
+      <h2>💪 Good try!</h2>
+      <p>Out of steps — but every try makes you smarter!<br>Want a little hint next time?</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="Merge.start(); closeModal();">Try again ✨</button>
+        <button class="btn btn-secondary" onclick="Screens.show('cafe'); closeModal();">Back to Café</button>
+      </div>
+    `);
+  },
+
+  hint() {
+    // find two of same level
+    const seen = {};
+    for (let i = 0; i < 25; i++) {
+      const v = this.grid[i];
+      if (!v) continue;
+      if (seen[v] !== undefined) {
+        this.selected = seen[v];
+        this.render();
+        showToast('💡 Try merging those two!');
+        AudioEngine.sfx('sparkle');
+        return;
+      }
+      seen[v] = i;
+    }
+    // else suggest placing
+    const empty = this.grid.findIndex(v => v === 0);
+    if (empty >= 0) {
+      this.selected = null;
+      this.render();
+      showToast('💡 Tap an empty spot to drop an ingredient!');
+    }
+  },
+
+  shuffle() {
+    // rearrange items among the cells they already occupy (never delete items)
+    const idxs = [];
+    const items = [];
+    this.grid.forEach((v, i) => { if (v) { idxs.push(i); items.push(v); } });
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = rnd(0, i);
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    idxs.forEach((idx, j) => { this.grid[idx] = items[j]; });
+    this.moves = Math.max(1, this.moves - 1);
+    this.selected = null;
+    AudioEngine.sfx('bounce');
+    this.render();
+    showToast('🔀 Mixed!');
+  }
+};
+
+/* ---------- MATH GAME ---------- */
+const MathGame = {
+  total: 5,
+  idx: 0,
+  correct: 0,
+  hearts: 3,
+  puzzle: null,
+  locked: false,
+
+  start() {
+    this.idx = 0;
+    this.correct = 0;
+    this.hearts = 3;
+    this.locked = false;
+    this.next();
+  },
+
+  next() {
+    if (this.idx >= this.total || this.hearts <= 0) return this.finish();
+    this.locked = false;
+    this.puzzle = MathPuzzles.generate(Game.state.level);
+    $('#mathNum').textContent = `${this.idx+1}/${this.total}`;
+    $('#mathStory').textContent = this.puzzle.story;
+    $('#mathPrompt').textContent = this.puzzle.prompt;
+    $('#mathFeedback').textContent = '';
+    $('#mathFeedback').className = 'math-feedback';
+    $('#mathNext').style.display = 'none';
+    $('#mathHearts').textContent = '❤️'.repeat(this.hearts) + '🤍'.repeat(3 - this.hearts);
+
+    const who = pick(PLAYABLE);
+    $('#mathCharacter').innerHTML = Chars.draw(who);
+
+    const box = $('#mathOptions');
+    box.innerHTML = '';
+    this.puzzle.choices.forEach(ch => {
+      const b = document.createElement('button');
+      b.className = 'math-opt';
+      b.textContent = ch;
+      b.addEventListener('click', () => this.answer(ch, b));
+      box.appendChild(b);
+    });
+  },
+
+  answer(ch, btn) {
+    if (this.locked) return;
+    AudioEngine.resume();
+    const ok = ch === this.puzzle.answer;
+    if (ok) {
+      this.locked = true;
+      btn.classList.add('correct');
+      $('#mathFeedback').textContent = pick([
+        '🌟 Super counting!',
+        '✨ Brain sparkle!',
+        '💖 Perfect!',
+        '🎉 You got it!',
+        '🦄 Unicorn-smart!',
+      ]);
+      $('#mathFeedback').className = 'math-feedback good';
+      AudioEngine.sfx('correct');
+      this.correct++;
+      Game.addXp(8);
+      Game.addBerries(1);
+    } else {
+      btn.classList.add('wrong');
+      this.hearts--;
+      $('#mathHearts').textContent = '❤️'.repeat(Math.max(0,this.hearts)) + '🤍'.repeat(3 - Math.max(0,this.hearts));
+      $('#mathFeedback').textContent = pick([
+        'Almost! Try again 💪',
+        'Hmm… count once more? 🤔',
+        'So close! 🍓',
+      ]);
+      $('#mathFeedback').className = 'math-feedback bad';
+      AudioEngine.sfx('wrong');
+      // out of hearts — reveal answer gently and let player continue
+      if (this.hearts <= 0) {
+        this.locked = true;
+        $$('#mathOptions .math-opt').forEach(b => {
+          if (String(b.textContent).trim() === String(this.puzzle.answer))
+            b.classList.add('correct');
+        });
+        $('#mathFeedback').textContent = `The answer is ${this.puzzle.answer}. You’ll get it next time! 🌱`;
+        this.idx = this.total; // end the round
+        $('#mathNext').textContent = 'See results →';
+        $('#mathNext').style.display = 'inline-flex';
+      }
+      return;
+    }
+    $('#mathNext').style.display = 'inline-flex';
+    this.idx++;
+  },
+
+  finish() {
+    const score = this.correct;
+    if (score > Game.state.mathBest) Game.state.mathBest = score;
+    Game.save();
+    const reward = score * 2;
+    Game.addStars(reward > 0 ? Math.ceil(score/2) : 0);
+    Game.addBerries(score);
+    Game.addXp(score * 5);
+    if (score >= 4) burstSparkles();
+    if (score >= 4) AudioEngine.sfx('fanfare');
+    else AudioEngine.sfx('cheer');
+
+    openModal(`
+      <h2>🧠 Brain Spark done!</h2>
+      <p>You solved <b>${score} / ${this.total}</b> puzzles!<br>
+      +${score} 🍓 &nbsp; +${Math.ceil(score/2)} ⭐</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="MathGame.start(); closeModal();">More puzzles! 🔢</button>
+        <button class="btn btn-secondary" onclick="Screens.show('cafe'); closeModal();">Back to Café</button>
+      </div>
+    `);
+  }
+};
+
+/* ---------- STAGE / RHYTHM ---------- */
+const Stage = {
+  playing: false,
+  score: 0,
+  combo: 0,
+  lives: 5,
+  notes: [],       // {lane, t, el, hit}
+  raf: null,
+  startTime: 0,
+  fallMs: 1800,
+  laneEls: [],
+  performer: 'nova',
+  lastSpawn: 0,
+  spawnGap: 550,
+
+  renderIdle() {
+    $('#stagePerformer').innerHTML = Chars.draw(this.performer, 'idol', 'headphones');
+    $('#stageSong').textContent = pick(['Sparkle Pop', 'Berry Beat', 'Moonlight Mix', 'Bestie Bounce']);
+    this.score = 0; this.combo = 0; this.lives = 5;
+    $('#stageScore').textContent = '0';
+    $('#stageCombo').textContent = '0';
+    $('#stageLives').textContent = '5';
+    this.laneEls = $$('#rhythmLanes .lane');
+    // clear notes
+    this.laneEls.forEach(l => {
+      [...l.querySelectorAll('.note')].forEach(n => n.remove());
+    });
+  },
+
+  pickIdol() {
+    openModal(`
+      <h2>🎤 Who performs?</h2>
+      <p>Pick your idol friend!</p>
+      <div class="wardrobe" style="margin-top:12px">
+        ${PLAYABLE.map(k => `
+          <button class="wardrobe-item ${this.performer===k?'active':''}" onclick="Stage.setPerformer('${k}')"
+            style="border:none;background:#fff6fa;padding:4px">
+            <div style="width:100%;height:100%">${Chars.draw(k)}</div>
+          </button>`).join('')}
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+      </div>
+    `);
+  },
+
+  setPerformer(k) {
+    this.performer = k;
+    Game.state.selectedChar = k;
+    Game.save();
+    this.renderIdle();
+    closeModal();
+    AudioEngine.sfx('sparkle');
+  },
+
+  start() {
+    if (this.playing) return;
+    AudioEngine.resume();
+    AudioEngine.startMusic();
+    this.playing = true;
+    this.score = 0;
+    this.combo = 0;
+    this.lives = 5;
+    this.notes = [];
+    this.startTime = performance.now();
+    this.lastSpawn = 0;
+    this.laneEls = $$('#rhythmLanes .lane');
+    this.laneEls.forEach(l => [...l.querySelectorAll('.note')].forEach(n => n.remove()));
+    $('#stageStart').textContent = '🎵 Playing…';
+    $('#stageStart').disabled = true;
+    $('#stageScore').textContent = '0';
+    $('#stageCombo').textContent = '0';
+    $('#stageLives').textContent = '5';
+    this.loop();
+  },
+
+  stop() {
+    this.playing = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.raf = null;
+  },
+
+  loop() {
+    if (!this.playing) return;
+    const now = performance.now();
+    const elapsed = now - this.startTime;
+
+    // spawn notes — cute pattern-ish
+    if (elapsed - this.lastSpawn > this.spawnGap && elapsed < 28000) {
+      this.lastSpawn = elapsed;
+      const lane = rnd(0, 2);
+      // occasionally chord
+      this.spawnNote(lane, elapsed);
+      if (Math.random() < 0.18) this.spawnNote((lane+1)%3, elapsed);
+    }
+
+    // move notes
+    const lanes = this.laneEls;
+    this.notes = this.notes.filter(n => {
+      if (n.hit) return false;
+      const age = now - n.bornAt;
+      const h = lanes[n.lane].clientHeight;
+      const y = (age / this.fallMs) * (h - 50);
+      n.el.style.top = y + 'px';
+      // miss when past hit zone
+      if (age > this.fallMs + 350) {
+        n.hit = true;
+        n.el.remove();
+        this.combo = 0;
+        this.lives--;
+        $('#stageCombo').textContent = '0';
+        $('#stageLives').textContent = String(Math.max(0, this.lives));
+        AudioEngine.sfx('miss');
+        return false;
+      }
+      return true;
+    });
+
+    // end condition
+    if (elapsed > 32000 || this.lives <= 0) {
+      this.finish();
+      return;
+    }
+
+    this.raf = requestAnimationFrame(() => this.loop());
+  },
+
+  spawnNote(lane, t) {
+    const el = document.createElement('div');
+    el.className = 'note';
+    el.textContent = ['💗','⭐','✨'][lane];
+    el.style.background = ['#ff8fb8','#ffe66d','#c9a7ff'][lane];
+    el.style.top = '0px';
+    this.laneEls[lane].appendChild(el);
+    this.notes.push({ lane, el, bornAt: performance.now(), hit: false });
+    AudioEngine.sfx('drum');
+  },
+
+  tap(lane) {
+    if (!this.playing) return;
+    AudioEngine.resume();
+    const now = performance.now();
+    // find closest note in lane near hit zone
+    let best = null, bestDist = 99999;
+    this.notes.forEach(n => {
+      if (n.hit || n.lane !== lane) return;
+      const age = now - n.bornAt;
+      const dist = Math.abs(age - this.fallMs * 0.78);
+      if (dist < bestDist) { bestDist = dist; best = n; }
+    });
+    const perf = $('#stagePerformer');
+
+    if (best && bestDist < 320) {
+      best.hit = true;
+      best.el.remove();
+      const perfect = bestDist < 120;
+      this.combo++;
+      const pts = (perfect ? 100 : 50) * (1 + Math.floor(this.combo / 5) * 0.2);
+      this.score += Math.round(pts);
+      $('#stageScore').textContent = this.score;
+      $('#stageCombo').textContent = this.combo;
+      AudioEngine.sfx('hit');
+      perf.classList.add('hit');
+      setTimeout(() => perf.classList.remove('hit'), 250);
+      const rect = best.el?.getBoundingClientRect();
+      flashText($('#stageScene'), perfect ? 'PERFECT! ✨' : 'NICE! 💖');
+      burstSparkles(rect?.left, rect?.top, 6);
+    } else {
+      // empty tap — tiny penalty combo reset only
+      AudioEngine.sfx('tap');
+    }
+  },
+
+  finish() {
+    this.stop();
+    AudioEngine.stopMusic();
+    $('#stageStart').textContent = '🎵 Start Show!';
+    $('#stageStart').disabled = false;
+    const starsEarned = this.score >= 2500 ? 5 : this.score >= 1500 ? 3 : this.score >= 700 ? 2 : 1;
+    if (this.score > Game.state.stageBest) Game.state.stageBest = this.score;
+    Game.save();
+    Game.addStars(starsEarned);
+    Game.addXp(starsEarned * 6);
+    AudioEngine.sfx('fanfare');
+    burstSparkles();
+    openModal(`
+      <h2>🎤 Show time!</h2>
+      <p>Score: <b>${this.score}</b><br>
+      Best combo: fans loved it!<br>
+      +${starsEarned} ⭐</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="closeModal(); Stage.start();">Encore! 🌟</button>
+        <button class="btn btn-secondary" onclick="Screens.show('cafe'); closeModal();">Back to Café</button>
+      </div>
+    `);
+  }
+};
+
+/* ---------- DRESS UP ---------- */
+const Dress = {
+  render() {
+    const s = Game.state;
+    $('#dressStars').textContent = s.stars;
+    $('#dressAvatar').innerHTML = Chars.draw(s.selectedChar, s.outfit, s.hat);
+    $('#dressWho').textContent = CHAR_LABEL[s.selectedChar] || s.selectedChar;
+    const on = OUTFITS.find(o => o.id === s.outfit)?.name || 'Outfit';
+    const hn = s.hat ? (HATS.find(h => h.id === s.hat)?.name || 'Hat') : 'Natural ears';
+    $('#dressAccs').textContent = `${on} · ${hn}`;
+
+    // characters
+    const chars = $('#dressChars');
+    chars.innerHTML = '';
+    PLAYABLE.forEach(k => {
+      const b = document.createElement('button');
+      b.className = 'wardrobe-item' + (s.selectedChar === k ? ' active' : '');
+      b.innerHTML = `<div style="width:100%;height:100%">${Chars.draw(k)}</div>`;
+      b.addEventListener('click', () => {
+        Game.state.selectedChar = k;
+        Game.save();
+        AudioEngine.sfx('sparkle');
+        this.render();
+      });
+      chars.appendChild(b);
+    });
+
+    // outfits
+    const outs = $('#dressOutfits');
+    outs.innerHTML = '';
+    OUTFITS.forEach(o => {
+      const owned = Game.state.unlockedOutfits.includes(o.id);
+      const b = document.createElement('button');
+      b.className = 'wardrobe-item' + (s.outfit === o.id ? ' active' : '') + (owned ? '' : ' locked');
+      b.innerHTML = `${o.emoji}<div class="item-label">${owned ? o.name : o.cost + '⭐'}</div>`;
+      b.addEventListener('click', () => this.buyOrWear('outfit', o, owned));
+      outs.appendChild(b);
+    });
+
+    // hats
+    const hats = $('#dressHats');
+    hats.innerHTML = '';
+    HATS.forEach(h => {
+      const owned = Game.state.unlockedHats.includes(h.id);
+      const b = document.createElement('button');
+      b.className = 'wardrobe-item' + (s.hat === h.id ? ' active' : '') + (owned ? '' : ' locked');
+      b.innerHTML = `${h.emoji}<div class="item-label">${owned ? h.name : h.cost + '⭐'}</div>`;
+      b.addEventListener('click', () => this.buyOrWear('hat', h, owned));
+      hats.appendChild(b);
+    });
+  },
+
+  buyOrWear(kind, item, owned) {
+    const id = kind === 'outfit' ? item.id : item.id;
+    if (!owned) {
+      if (Game.state.stars < item.cost) {
+        showToast(`Need ${item.cost} ⭐ — play Brain Spark or Stage!`);
+        AudioEngine.sfx('wrong');
+        return;
+      }
+      Game.state.stars -= item.cost;
+      if (kind === 'outfit') Game.state.unlockedOutfits.push(item.id);
+      else Game.state.unlockedHats.push(item.id);
+      showToast(`🎁 Unlocked ${item.name}!`);
+      AudioEngine.sfx('fanfare');
+    }
+    if (kind === 'outfit') Game.state.outfit = item.id;
+    else Game.state.hat = item.id;
+    Game.save();
+    AudioEngine.sfx('heart');
+    this.render();
+    burstSparkles(null, null, 8);
+  }
+};
+
+/* ---------- STORY ---------- */
+const Story = {
+  renderList() {
+    const list = $('#storyList');
+    list.innerHTML = '';
+    const done = Game.state.storyDone;
+    $('#storyCount').textContent = `${done.length}/${STORIES.length}`;
+    STORIES.forEach(ep => {
+      const unlocked = Game.state.level >= ep.unlock;
+      const isDone = done.includes(ep.id);
+      const el = document.createElement('div');
+      el.className = 'episode' + (unlocked ? '' : ' locked') + (isDone ? ' done' : '');
+      el.innerHTML = `
+        <div class="episode-tag">${isDone ? '✓ Read' : unlocked ? 'New!' : `🔒 Level ${ep.unlock}`}</div>
+        <h3>${ep.title}</h3>
+        <p>${isDone ? 'Tap to read again ✨' : unlocked ? 'A sweet episode awaits…' : 'Keep playing to unlock!'}</p>
+      `;
+      el.addEventListener('click', () => {
+        if (unlocked) this.playEpisode(ep.id);
+      });
+      list.appendChild(el);
+    });
+  },
+
+  playEpisode(id) {
+    const ep = STORIES.find(s => s.id === id);
+    if (!ep) return;
+    this._ep = ep;
+    this._li = 0;
+    this.showLine();
+  },
+
+  showLine() {
+    const ep = this._ep;
+    if (this._li >= ep.lines.length) return this.showChoice();
+    const line = ep.lines[this._li];
+    openModal(`
+      <h2>${ep.title}</h2>
+      <div style="width:90px;height:90px;margin:8px auto">${Chars.draw(line.who)}</div>
+      <p style="font-size:15px;color:var(--ink);min-height:72px">“${line.text}”</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="Story.nextLine()">Next →</button>
+        <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+      </div>
+    `);
+    AudioEngine.sfx('tap');
+  },
+
+  nextLine() {
+    this._li++;
+    this.showLine();
+  },
+
+  showChoice() {
+    const ep = this._ep;
+    openModal(`
+      <h2>💭 A little choice…</h2>
+      <p style="color:var(--ink);margin-bottom:12px">${ep.choice.question}</p>
+      <div class="modal-actions">
+        ${ep.choice.options.map((o, i) => `
+          <button class="choice-btn" onclick="Story.choose(${i})">${o.label}</button>
+        `).join('')}
+      </div>
+    `);
+    AudioEngine.sfx('sparkle');
+  },
+
+  choose(i) {
+    const ep = this._ep;
+    const opt = ep.choice.options[i];
+    const r = opt.reward || {};
+    if (r.stars) Game.addStars(r.stars);
+    if (r.berries) Game.addBerries(r.berries);
+    if (!Game.state.storyDone.includes(ep.id)) {
+      Game.state.storyDone.push(ep.id);
+      Game.addXp(30);
+    }
+    Game.save();
+    AudioEngine.sfx('correct');
+    burstSparkles();
+    openModal(`
+      <h2>${pick(['💖','🌟','✨','🎉'])}</h2>
+      <p>“${opt.reply}”</p>
+      <p style="margin-top:10px"><b>${ep.end}</b></p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="closeModal(); Story.renderList();">Lovely! 💕</button>
+      </div>
+    `);
+  }
+};
+
+/* ---------- HOW TO PLAY ---------- */
+function showHow() {
+  openModal(`
+    <h2>💡 How to play</h2>
+    <p style="text-align:left;line-height:1.5">
+      <b>🍓 Merge Kitchen</b> — drop ingredients and drag same ones together to build up to the goal treat. Plan your steps!<br><br>
+      <b>🔢 Brain Spark</b> — fun number puzzles: adding, subtracting, patterns & little stories.<br><br>
+      <b>🎤 K-Pop Stage</b> — tap 💗 ⭐ ✨ when the notes reach the bottom.<br><br>
+      <b>👗 Dress-Up</b> — unlock outfits with stars from playing.<br><br>
+      <b>📖 Story</b> — read episodes and make kind choices!<br><br>
+      Every game is gentle: no timers that make you cry, no losing your stuff. Just play and grow. 🌱
+    </p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="closeModal();">Got it! 🌟</button>
+    </div>
+  `);
+}
+
+function showSettings() {
+  openModal(`
+    <h2>⚙️ Settings</h2>
+    <p>Sound & music controls</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="toggleSound()">
+        ${Game.state.sound ? '🔊 Sound is ON' : '🔇 Sound is OFF'}
+      </button>
+      <button class="btn btn-secondary" onclick="toggleMusic()">
+        ${Game.state.music ? '🎵 Music is ON' : '🎵 Music is OFF'}
+      </button>
+      <button class="btn btn-secondary" onclick="resetProgress()">🌈 Start fresh</button>
+      <button class="btn btn-primary" onclick="closeModal()">Done</button>
+    </div>
+    <p style="margin-top:14px;font-size:12px">📱 <b>Install as an app:</b> open this page in Chrome on your phone → menu (⋮) → <b>Add to Home screen</b>. It will launch full-screen like a real app!</p>
+  `);
+}
+
+function toggleSound() {
+  Game.state.sound = !Game.state.sound;
+  AudioEngine.enabled = Game.state.sound;
+  Game.save();
+  if (Game.state.sound) AudioEngine.sfx('tap');
+  showSettings();
+  updateSoundBtn();
+}
+
+function toggleMusic() {
+  Game.state.music = !Game.state.music;
+  AudioEngine.musicOn = Game.state.music;
+  Game.save();
+  if (Game.state.music) AudioEngine.startMusic();
+  else AudioEngine.stopMusic();
+  showSettings();
+}
+
+function resetProgress() {
+  openModal(`
+    <h2>🌈 Start fresh?</h2>
+    <p>This clears stars, outfits and stories. Are you sure?</p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="doReset()">Yes, fresh start</button>
+      <button class="btn btn-secondary" onclick="showSettings()">Keep my stuff</button>
+    </div>
+  `);
+}
+
+function doReset() {
+  Game.state = Game.defaultState();
+  Game.save();
+  closeModal();
+  Screens.show('cafe');
+  showToast('🌈 Fresh start! Welcome back!');
+  updateSoundBtn();
+}
+
+function updateSoundBtn() {
+  $('#btnSound').textContent = Game.state.sound ? '🔊' : '🔇';
+}
+
+/* ---------- TITLE ---------- */
+function renderTitle() {
+  const wrap = $('#titleChars');
+  wrap.innerHTML = ['mochi','pip','nova','kiki'].map((k,i) =>
+    `<div style="width:64px;height:64px;animation:bounceIn 0.8s ${0.1*i}s both">${Chars.draw(k)}</div>`
+  ).join('');
+  $('#titleHearts').textContent = ['💗','🌟','✨','💖','🌟'].join(' ');
+  const hasSave = Game.load();
+  if (hasSave) $('#btnContinue').style.display = 'inline-flex';
+}
+
+/* ---------- BG SPARKLES ---------- */
+function initSparkles() {
+  const layer = $('#bgSparkles');
+  const emo = ['✨','⭐','💗','🌸','✨','🍓','🌈'];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('span');
+    s.textContent = pick(emo);
+    s.style.left = rnd(0, 100) + '%';
+    s.style.top = rnd(0, 100) + '%';
+    s.style.animationDelay = (Math.random() * 6) + 's';
+    s.style.fontSize = rnd(10, 18) + 'px';
+    layer.appendChild(s);
+  }
+}
+
+/* ---------- EVENTS ---------- */
+function bindUI() {
+  $('#btnPlay').addEventListener('click', () => {
+    AudioEngine.resume();
+    AudioEngine.sfx('fanfare');
+    if (!Game.state) Game.load();
+    Game.state.sound = true;
+    AudioEngine.enabled = true;
+    AudioEngine.musicOn = true;
+    AudioEngine.startMusic();
+    Screens.show('cafe');
+    showToast('🌸 Welcome to Starberry Café!');
+  });
+
+  $('#btnContinue').addEventListener('click', () => {
+    AudioEngine.resume();
+    Game.load();
+    AudioEngine.enabled = Game.state.sound;
+    AudioEngine.musicOn = Game.state.music;
+    if (Game.state.music) AudioEngine.startMusic();
+    Screens.show('cafe');
+  });
+
+  $('#btnHow').addEventListener('click', showHow);
+  $('#btnSettings').addEventListener('click', showSettings);
+  $('#btnSound').addEventListener('click', () => {
+    const on = AudioEngine.toggle();
+    Game.state.sound = on;
+    Game.save();
+    updateSoundBtn();
+    showToast(on ? '🔊 Sound on' : '🔇 Sound off');
+  });
+
+  // nav
+  $$('.nav-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      const s = b.dataset.screen;
+      Screens.show(s);
+    });
+  });
+
+  // cafe quick
+  $('#goMerge').addEventListener('click', () => Screens.show('merge'));
+  $('#goMath').addEventListener('click', () => Screens.show('math'));
+  $('#goStage').addEventListener('click', () => Screens.show('stage'));
+  $('#goDress').addEventListener('click', () => Screens.show('dress'));
+  $('#goStory').addEventListener('click', () => Screens.show('story'));
+
+  // merge
+  $('#mergeBack').addEventListener('click', () => Screens.show('cafe'));
+  $('#mergeQuit').addEventListener('click', () => Screens.show('cafe'));
+  $('#mergeHint').addEventListener('click', () => Merge.hint());
+  $('#mergeShuffle').addEventListener('click', () => Merge.shuffle());
+
+  // math
+  $('#mathBack').addEventListener('click', () => Screens.show('cafe'));
+  $('#mathNext').addEventListener('click', () => MathGame.next());
+
+  // stage
+  $('#stageBack').addEventListener('click', () => Screens.show('cafe'));
+  $('#stageStart').addEventListener('click', () => Stage.start());
+  $('#stagePick').addEventListener('click', () => Stage.pickIdol());
+  $$('.lane-btn').forEach(b => {
+    b.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      Stage.tap(Number(b.dataset.lane));
+    });
+  });
+  // also tap lanes
+  $$('#rhythmLanes .lane').forEach(l => {
+    l.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      Stage.tap(Number(l.dataset.lane));
+    });
+  });
+
+  // dress / story backs
+  $('#dressBack').addEventListener('click', () => Screens.show('cafe'));
+  $('#storyBack').addEventListener('click', () => Screens.show('cafe'));
+
+  // keyboard for PC
+  window.addEventListener('keydown', (e) => {
+    if (Stage.playing) {
+      if (e.key === 'a' || e.key === '1' || e.key === 'ArrowLeft') Stage.tap(0);
+      if (e.key === 's' || e.key === '2' || e.key === 'ArrowDown') Stage.tap(1);
+      if (e.key === 'd' || e.key === '3' || e.key === 'ArrowRight') Stage.tap(2);
+    }
+  });
+
+  // prevent double-tap zoom
+  document.addEventListener('dblclick', e => e.preventDefault(), { passive: false });
+}
+
+/* ---------- BOOT ---------- */
+function boot() {
+  initSparkles();
+  Game.load();
+  AudioEngine.enabled = Game.state.sound;
+  AudioEngine.musicOn = Game.state.music;
+  renderTitle();
+  bindUI();
+  updateSoundBtn();
+  Game.refreshHUD();
+
+  // unlock audio on first interaction anywhere
+  const unlock = () => {
+    AudioEngine.resume();
+    document.removeEventListener('pointerdown', unlock);
+    document.removeEventListener('keydown', unlock);
+  };
+  document.addEventListener('pointerdown', unlock);
+  document.addEventListener('keydown', unlock);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+
+// expose for inline handlers
+window.Merge = Merge;
+window.Screens = Screens;
+window.Story = Story;
+window.Stage = Stage;
+window.MathGame = MathGame;
+window.closeModal = closeModal;
+window.showSettings = showSettings;
+window.toggleSound = toggleSound;
+window.toggleMusic = toggleMusic;
+window.resetProgress = resetProgress;
+window.doReset = doReset;
+</script>
+</body>
+</html>

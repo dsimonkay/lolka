@@ -911,9 +911,9 @@ html, body {
 /* toast */
 .toast {
   position: fixed;
-  top: calc(58px + var(--safe-top));
+  top: calc(12px + var(--safe-top));
   left: 50%;
-  transform: translateX(-50%) translateY(-80px);
+  transform: translateX(-50%) translateY(calc(-100% - 24px));
   background: white;
   border: 3px solid var(--mint);
   border-radius: 999px;
@@ -922,11 +922,16 @@ html, body {
   font-size: 14px;
   box-shadow: var(--shadow-lg);
   z-index: 70;
-  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), opacity 0.25s;
   max-width: 90vw;
   text-align: center;
+  opacity: 0;
+  pointer-events: none;
 }
-.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
 
 /* hearts row */
 .hearts { letter-spacing: 2px; font-size: 18px; }

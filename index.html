@@ -175,6 +175,7 @@ svg { display: block; }
 .order { flex: 1; max-width: 118px; background: #fff; border: var(--line); border-radius: 18px; box-shadow: var(--pop-sm); padding: 6px 4px 8px; text-align: center; position: relative; cursor: pointer; }
 .order .fan { font-size: 30px; line-height: 1.05; }
 .order .want { margin: 3px auto 0; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: var(--line); font-weight: 700; font-size: 22px; background: var(--c); }
+.order .want.d3 { font-size: 15px; }
 .order.ready { background: var(--butter-l); animation: readyGlow 1s ease-in-out infinite; }
 .order.new { animation: popIn .4s cubic-bezier(.2,1.5,.45,1); }
 .order.thanks::after { content: 'Thank you!'; position: absolute; left: 50%; top: -12px; transform: translateX(-50%); background: var(--pink); border: 2.5px solid var(--ink); border-radius: 99px; font-size: 12px; font-weight: 700; padding: 1px 8px; white-space: nowrap; }
@@ -195,6 +196,7 @@ svg { display: block; }
 .candy.pop { animation: candyPop .38s cubic-bezier(.2,1.6,.45,1); }
 @keyframes candyPop { 0% { transform: scale(.4); } 100% { transform: scale(1); } }
 .candy.x2 { background: conic-gradient(#FF9FCF, #FFD86B, #8EE3B7, #8CCBFF, #C4AAFF, #FF9FCF); font-size: calc(var(--cell) * .3); text-shadow: 0 0 4px #fff, 0 0 4px #fff; }
+.candy.d3 { font-size: calc(var(--cell) * .32); }
 .drop-ok { outline: 4px solid var(--mint); outline-offset: 2px; border-radius: 18px; }
 .mctrl { display: flex; gap: 10px; justify-content: center; align-items: center; padding: 8px 12px 12px; }
 .mctrl .btn { min-height: 56px; }
@@ -576,11 +578,11 @@ const TR = {
   'Reading and reasoning': ['Lesen und Kombinieren', 'Olvasás és következtetés'],
   'Read the clues to find where everyone stands.': ['Lies die Hinweise und finde heraus, wer wo steht.', 'Olvasd el a nyomokat, és találd ki, ki hol áll.'],
   'Sprout': ['Spross', 'Rügy'],
-  'Gentle puzzles with numbers up to 10.': ['Sanfte Rätsel mit Zahlen bis 10.', 'Könnyű feladványok 10-ig terjedő számokkal.'],
+  'Gentle puzzles with numbers up to 30.': ['Sanfte Rätsel mit Zahlen bis 30.', 'Könnyű feladványok 30-ig terjedő számokkal.'],
   'Blossom': ['Blüte', 'Virág'],
-  'A little tricky, numbers up to 20.': ['Ein bisschen knifflig, Zahlen bis 20.', 'Egy kicsit trükkös, számok 20-ig.'],
+  'A little tricky, numbers up to 60.': ['Ein bisschen knifflig, Zahlen bis 60.', 'Egy kicsit trükkös, számok 60-ig.'],
   'Superstar': ['Superstar', 'Szupersztár'],
-  'Tricky! Bigger numbers and harder logic.': ['Knifflig! Größere Zahlen und schwierigere Logik.', 'Trükkös! Nagyobb számok és nehezebb logika.'],
+  'Tricky! Numbers up to 100 and harder logic.': ['Knifflig! Zahlen bis 100 und schwierigere Logik.', 'Trükkös! Számok 100-ig és nehezebb logika.'],
   'Heart': ['Herz', 'Szív'],
   'Spin': ['Drehung', 'Pörgés'],
   'Clap': ['Klatschen', 'Taps'],
@@ -1082,9 +1084,9 @@ const GAMES = {
 };
 const GAME_ORDER = ['merge', 'dance', 'pattern', 'sudoku', 'lineup'];
 const TIERS = [
-  { name: 'Sprout', icon: '🌱', desc: 'Gentle puzzles with numbers up to 10.' },
-  { name: 'Blossom', icon: '🌸', desc: 'A little tricky, numbers up to 20.' },
-  { name: 'Superstar', icon: '⭐', desc: 'Tricky! Bigger numbers and harder logic.' }
+  { name: 'Sprout', icon: '🌱', desc: 'Gentle puzzles with numbers up to 30.' },
+  { name: 'Blossom', icon: '🌸', desc: 'A little tricky, numbers up to 60.' },
+  { name: 'Superstar', icon: '⭐', desc: 'Tricky! Numbers up to 100 and harder logic.' }
 ];
 const FANS = ['🐶', '🐱', '🐹', '🐻', '🐨', '🐸', '🐤', '🐧', '🐯', '🐷', '🐭', '🦔', '🐮', '🐙'];
 
@@ -1799,13 +1801,13 @@ const Logic = {};
 Logic.mergeParams = function (tier, level) {
   const L = Math.min(Math.max(level, 1) - 1, 15);
   const base = [
-    { cols: 4, rows: 4, spawnMax: 4, tMin: 3, tMax: 8, orders: 3, show: 2, start: 7, dbl: false },
-    { cols: 4, rows: 5, spawnMax: 6, tMin: 6, tMax: 14, orders: 4, show: 3, start: 9, dbl: false },
-    { cols: 4, rows: 5, spawnMax: 9, tMin: 10, tMax: 24, orders: 5, show: 3, start: 10, dbl: true }
+    { cols: 4, rows: 4, spawnMax: 8, tMin: 8, tMax: 20, orders: 3, show: 2, start: 7, dbl: false },
+    { cols: 4, rows: 5, spawnMax: 20, tMin: 21, tMax: 50, orders: 4, show: 3, start: 9, dbl: false },
+    { cols: 4, rows: 5, spawnMax: 35, tMin: 36, tMax: 90, orders: 5, show: 3, start: 10, dbl: true }
   ][tier];
   const p = Object.assign({}, base);
-  p.tMax = Math.min([10, 20, 40][tier], p.tMax + Math.floor(L / 2) * (tier + 1));
-  p.tMin = Math.min(p.tMin + Math.floor(L / 3), p.tMax - 3);
+  p.tMax = Math.min([30, 60, 100][tier], p.tMax + Math.floor(L / 2) * 2);
+  p.tMin = Math.min(p.tMin + Math.floor(L / 3) * (tier + 1), p.tMax - 3);
   p.orders += Math.min(2, Math.floor(L / 3));
   p.moves = Logic.mergeMoves(p);
   return p;
@@ -1814,7 +1816,7 @@ Logic.mergeMoves = function (p) {
   // fitted to a greedy test player (see tests): kids get roughly twice what that player needs
   const avgSpawn = (1 + p.spawnMax) / 2, avgT = (p.tMin + p.tMax) / 2;
   const par = Math.max(2, p.orders * (2 * avgT / avgSpawn - 1) - p.start);
-  return Math.max(14, Math.ceil(par * 1.6 + 6));
+  return Math.max(14, Math.ceil(par * 1.8 + 6));
 };
 Logic.mergeStars = (left, total) => (left >= total * 0.4 ? 3 : left >= total * 0.2 ? 2 : 1);
 Logic.newTarget = function (p, existing) {
@@ -1824,10 +1826,9 @@ Logic.newTarget = function (p, existing) {
 };
 Logic.startCandies = function (p, firstTarget) {
   const vals = [];
-  const a = rand(1, Math.min(p.spawnMax, Math.max(1, firstTarget - 1)));
-  const b = firstTarget - a;
-  vals.push(a);
-  if (b >= 1 && b <= p.spawnMax) vals.push(b);
+  // when two candies can make the first order, start with such a pair (the tutorial hint points at it)
+  const lo = Math.max(1, firstTarget - p.spawnMax), hi = Math.min(p.spawnMax, firstTarget - 1);
+  if (lo <= hi) { const a = rand(lo, hi); vals.push(a, firstTarget - a); }
   while (vals.length < p.start) vals.push(rand(1, p.spawnMax));
   return shuffle(vals);
 };
@@ -2323,7 +2324,7 @@ const MergeGame = {
   orderEl(k) { return this.ordersEl.querySelector('[data-k="' + k + '"]'); },
   candyHTML(v, i) {
     const targets = this.orders.map(o => o.t);
-    const cls = 'candy' + (v === DOUBLE ? ' x2' : '') + (v > 0 && targets.indexOf(v) >= 0 ? ' match' : '') + (i === this.sel ? ' sel' : '');
+    const cls = 'candy' + (v === DOUBLE ? ' x2' : '') + (v >= 100 ? ' d3' : '') + (v > 0 && targets.indexOf(v) >= 0 ? ' match' : '') + (i === this.sel ? ' sel' : '');
     return '<div class="' + cls + '" style="--c:' + (v === DOUBLE ? '#fff' : Art.candyColor(v)) + '">' + (v === DOUBLE ? '×2' : v) + '</div>';
   },
   render() {
@@ -2331,7 +2332,7 @@ const MergeGame = {
     this.ordersEl.innerHTML = this.orders.map((o, k) => {
       const ready = this.cells.indexOf(o.t) >= 0;
       return '<div class="order' + (ready ? ' ready' : '') + (o.fresh ? ' new' : '') + '" data-k="' + k + '"><div class="fan">' + o.fan + '</div>' +
-        '<div class="want" style="--c:' + Art.candyColor(o.t) + '">' + o.t + '</div></div>';
+        '<div class="want' + (o.t >= 100 ? ' d3' : '') + '" style="--c:' + Art.candyColor(o.t) + '">' + o.t + '</div></div>';
     }).join('');
     this.orders.forEach(o => { o.fresh = false; });
     this.renderHud();
@@ -2434,7 +2435,7 @@ const MergeGame = {
     if (a === DOUBLE && b === DOUBLE) { this.nope(j, T('Two ×2 stars can\'t mix. Put one on a number candy!')); return; }
     if (this.moves <= 0) { this.nope(j, T('No moves left!')); return; }
     const v = a === DOUBLE ? b * 2 : b === DOUBLE ? a * 2 : a + b;
-    if (v > 99) { this.nope(j, T('That candy would be way too big!')); return; }
+    if (v > 100) { this.nope(j, T('That candy would be way too big!')); return; }
     this.moves--; this.sums++;
     this.cells[i] = null; this.cells[j] = v;
     this.render();

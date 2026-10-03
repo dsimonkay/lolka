@@ -204,7 +204,9 @@ svg { display: block; }
 .gift .em { font-size: 26px; }
 .shake { animation: shake .42s; }
 @keyframes shake { 20% { transform: translateX(-7px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
-.hint-pulse { animation: hintPulse .9s ease-in-out 3 !important; }
+.candy.hint { box-shadow: 0 0 0 4px #fff, 0 0 0 8px var(--mint), 0 3px 0 var(--ink); z-index: 2; }
+.candy.hint:not(.dragging) { animation: hintPulse .9s ease-in-out infinite; }
+.hint-ring { outline: 4px solid var(--mint); outline-offset: 3px; }
 @keyframes hintPulse { 50% { box-shadow: 0 0 0 6px #fff, 0 0 0 11px var(--mint), 0 3px 0 var(--ink); transform: scale(1.08); } }
 .hand { position: fixed; z-index: 75; font-size: 40px; pointer-events: none; margin: -6px 0 0 -12px; animation: handMove 1.5s ease-in-out 2 forwards; filter: drop-shadow(0 3px 0 rgba(75,46,92,.35)); }
 @keyframes handMove { 0% { transform: translate(0, 0); opacity: 0; } 15% { transform: translate(0, 0); opacity: 1; } 70% { transform: translate(var(--dx), var(--dy)); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
@@ -310,8 +312,11 @@ svg { display: block; }
 .bg-park .sun { right: 10%; top: 6%; width: 70px; height: 70px; border-radius: 50%; background: #FFE27A; box-shadow: 0 0 0 12px rgba(255,226,122,.35); }
 .bg-park .hill { left: -20%; right: 30%; top: 48%; height: 30%; border-radius: 50%; background: #A6E69A; }
 .bg-park .hill2 { left: 35%; right: -25%; top: 46%; height: 30%; border-radius: 50%; background: #97DE8C; }
-.bg-park .tree { width: 90px; height: 90px; border-radius: 50%; background: #6FCB7A; box-shadow: 30px 20px 0 #63BF6F, -26px 22px 0 #7AD686; top: 30%; }
-.bg-park .tree.a { left: 6%; } .bg-park .tree.b { right: 8%; top: 26%; transform: scale(.8); }
+.bg-park .tree { width: 90px; height: 160px; bottom: 44%; }
+.bg-park .tree::before { content: ''; position: absolute; left: 36px; bottom: 0; width: 20px; height: 96px; border-radius: 10px 10px 4px 4px; background: #B9825A; box-shadow: inset -5px 0 0 rgba(75,46,92,.18); }
+.bg-park .tree::after { content: ''; position: absolute; left: 0; top: 0; width: 90px; height: 90px; border-radius: 50%; background: #6FCB7A; box-shadow: 30px 20px 0 #63BF6F, -26px 22px 0 #7AD686; }
+.bg-park .tree.a { left: 6%; }
+.bg-park .tree.b { right: 8%; bottom: 46%; transform: scale(.8); transform-origin: 50% 100%; }
 .bg-stage { background: linear-gradient(180deg, #2B2166 0%, #5B3AA0 58%, #3A2A78 100%); }
 .bg-stage .beam { top: -10%; width: 40%; height: 90%; background: linear-gradient(to bottom, rgba(255,240,255,.55), rgba(255,240,255,0)); clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%); }
 .bg-stage .beam.a { left: 4%; transform: rotate(-14deg); } .bg-stage .beam.b { right: 4%; transform: rotate(14deg); } .bg-stage .beam.c { left: 30%; }
@@ -440,6 +445,7 @@ textarea.field { font-size: 13px; height: 80px; resize: none; word-break: break-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .deco { display: none; }
+  .hand { animation: none !important; }
 }
 .candy.shake, .order.shake, .pad.shake { animation: shake .42s !important; }
 .clue.wrong { background: #FFE0E0; }
@@ -473,6 +479,25 @@ textarea.field { font-size: 13px; height: 80px; resize: none; word-break: break-
   .lfoot { padding: 4px 12px 10px; }
 }
 
+/* ---------- v4: drag and drop, sudoku numbers ---------- */
+.dghost { position: fixed; z-index: 74; pointer-events: none; width: 60px; height: 60px; transform: translate(-50%, -80%) scale(1.1); display: grid; place-items: center; filter: drop-shadow(0 6px 6px rgba(75,46,92,.35)); }
+.dghost .face { width: 100%; height: 100%; }
+.dghost .emo { font-size: 44px; }
+.dghost .snum, .dghost .dg-x { width: 100%; height: 100%; border-radius: 50%; background: #fff; border: var(--line); display: grid; place-items: center; font-size: 28px; font-weight: 700; color: var(--ink); }
+.dsrc { opacity: .35; }
+.palette button { touch-action: none; }
+.palette button.done { opacity: .35; filter: grayscale(1); box-shadow: none; }
+.palette.p9 { flex-wrap: wrap; max-width: 330px; margin: 0 auto; }
+.palette.p9 button { width: 52px; height: 52px; }
+.palette .snum { font-size: 26px; font-weight: 700; color: var(--ink); }
+.scell .snum { font-size: calc(var(--sc) * .56); font-weight: 700; line-height: 1; color: var(--pink-d); }
+.scell.given .snum { color: var(--ink); }
+.scell .snum.put { animation: popIn .32s cubic-bezier(.2,1.5,.45,1); }
+.scell.dover { box-shadow: inset 0 0 0 4px var(--mint); background: var(--mint-l); }
+.smode .m123 { font-size: 15px; font-weight: 700; letter-spacing: -.5px; }
+.tok, .slot.filled { touch-action: none; }
+.slot.dover { box-shadow: 0 0 0 4px var(--mint); background: var(--mint-l); }
+.pool.dover { box-shadow: inset 0 0 0 3px var(--mint); border-radius: 18px; }
 </style>
 </head>
 <body>
@@ -818,6 +843,8 @@ const TR = {
   'Add 10 each time:': ['Immer 10 dazu:', 'Minden lépésben + 10:'],
   'Each number doubles (× 2):': ['Jede Zahl verdoppelt sich (× 2):', 'Minden szám megduplázódik (× 2):'],
   'It goes +{a}, then −{b}, over and over:': ['Es geht +{a}, dann −{b}, immer wieder:', 'Így megy: +{a}, aztán −{b}, újra meg újra:'],
+  'It goes +{a}, then +{b}, over and over:': ['Es geht +{a}, dann +{b}, immer wieder:', 'Így megy: +{a}, aztán +{b}, újra meg újra:'],
+  'It goes × 2, then −{b}, over and over:': ['Es geht × 2, dann −{b}, immer wieder:', 'Így megy: × 2, aztán −{b}, újra meg újra:'],
   'The jumps grow by one each time (+{a}, +{b}, +{c}...):': ['Die Sprünge werden jedes Mal um eins größer (+{a}, +{b}, +{c} ...):', 'Az ugrások mindig eggyel nőnek (+{a}, +{b}, +{c}...):'],
   'Multiply by {m} each time:': ['Immer mal {m}:', 'Minden lépésben × {m}:'],
   'Each number is half of the one before (÷ 2):': ['Jede Zahl ist die Hälfte der Zahl davor (÷ 2):', 'Minden szám az előző fele (÷ 2):'],
@@ -827,13 +854,18 @@ const TR = {
 
   // --- Photo Shoot ---
   'Maple\'s photo puzzle': ['Maples Foto-Rätsel', 'Maple fotórejtvénye'],
+  '3-by-3': ['3×3', '3×3'],
+  'Pictures or numbers': ['Bilder oder Zahlen', 'Képek vagy számok'],
+  'Now with numbers!': ['Jetzt mit Zahlen!', 'Most számokkal!'],
+  'Now with pictures!': ['Jetzt mit Bildern!', 'Most képekkel!'],
+  'All of these are already placed. Pick another one!': ['Davon sind schon alle platziert. Nimm ein anderes!', 'Ebből már mind a helyén van. Válassz másikat!'],
   '2-by-3': ['2×3', '2×3'],
   '2-by-2': ['2×2', '2×2'],
   'Each row, column and thick {box} box needs everyone exactly once!': ['In jeder Reihe, Spalte und dicken {box}-Box muss jeder genau einmal vorkommen!', 'Minden sorban, oszlopban és vastag keretes {box} dobozban mindenki pontosan egyszer szerepel!'],
   'guest': ['Gast', 'vendég'],
   'Erase': ['Löschen', 'Törlés'],
   'The squares with a purple background are already set.': ['Die Felder mit lila Hintergrund sind schon fest.', 'A lila hátterű négyzetek már ki vannak töltve.'],
-  'First tap an empty square, then pick who goes there.': ['Tippe zuerst auf ein leeres Feld und wähle dann, wer dort hinkommt.', 'Először koppints egy üres négyzetre, aztán válaszd ki, ki kerül oda.'],
+  'Drag one onto an empty square, or tap the square first.': ['Zieh eins auf ein leeres Feld oder tippe zuerst auf das Feld.', 'Húzz egyet egy üres négyzetre, vagy előbb koppints a négyzetre.'],
   'Oops! They\'re already in that row, column or box.': ['Ups! Die Figur ist schon in dieser Reihe, Spalte oder Box.', 'Hoppá! Ő már szerepel ebben a sorban, oszlopban vagy dobozban.'],
   'Two of the same can\'t share a row, column or box!': ['Zwei gleiche dürfen nicht in derselben Reihe, Spalte oder Box sein!', 'Két egyforma nem lehet ugyanabban a sorban, oszlopban vagy dobozban!'],
   'Almost! Fix the red squares.': ['Fast! Korrigiere die roten Felder.', 'Majdnem! Javítsd ki a piros négyzeteket.'],
@@ -865,7 +897,7 @@ const TR = {
   'Tap here to take them off the stage.': ['Tippe hier, um die Figur von der Bühne zu nehmen.', 'Koppints ide, hogy levedd a színpadról.'],
   'Everyone is on stage! Tap Check.': ['Alle sind auf der Bühne! Tippe auf Prüfen.', 'Mindenki a színpadon van! Koppints az Ellenőrzés gombra.'],
   'Now tap a spot on the stage!': ['Tippe jetzt auf einen Platz auf der Bühne!', 'Most koppints egy helyre a színpadon!'],
-  'Tap a friend first, then tap a spot.': ['Tippe zuerst auf einen Freund, dann auf einen Platz.', 'Először koppints egy barátra, aztán egy helyre.'],
+  'Drag a friend onto a spot, or tap the friend, then the spot.': ['Zieh einen Freund auf einen Platz oder tippe erst den Freund, dann den Platz an.', 'Húzz egy barátot egy helyre, vagy koppints rá, aztán a helyre.'],
   'Some clues don\'t match yet. Look for the ❌.': ['Einige Hinweise stimmen noch nicht. Achte auf das ❌.', 'Néhány nyom még nem stimmel. Keresd a ❌ jelet.'],
 
   // --- title, hub, practice ---
@@ -942,7 +974,7 @@ const TR = {
   '<b>🍬 Candy Orders:</b> mental addition and planning ahead with limited moves. Superstar level adds doubling.': ['<b>🍬 Bonbon-Wünsche:</b> Kopfrechnen (Addition) und Vorausplanen mit begrenzten Zügen. Auf Superstar kommt das Verdoppeln dazu.', '<b>🍬 Cukorkarendelés:</b> fejben összeadás és előre tervezés korlátozott lépésszámmal. Szupersztár szinten a duplázás is megjelenik.'],
   '<b>💃 Dance Practice:</b> working memory. Sequences grow longer; Superstar sometimes asks for them backwards.': ['<b>💃 Tanztraining:</b> Arbeitsgedächtnis. Die Folgen werden länger; auf Superstar manchmal auch rückwärts.', '<b>💃 Táncpróba:</b> munkamemória. A sorozatok egyre hosszabbak; Szupersztár szinten néha visszafelé kell megismételni őket.'],
   '<b>🥁 Pattern Parade:</b> number sequences, skip counting, doubling and repeating patterns, with a short explanation after every answer.': ['<b>🥁 Muster-Parade:</b> Zahlenfolgen, Zählen in Schritten, Verdoppeln und wiederkehrende Muster, mit einer kurzen Erklärung nach jeder Antwort.', '<b>🥁 Mintaparádé:</b> számsorozatok, lépésenkénti számlálás, duplázás és ismétlődő minták, minden válasz után rövid magyarázattal.'],
-  '<b>📸 Photo Shoot:</b> sudoku-style deduction with pictures instead of numbers (4×4, then 6×6).': ['<b>📸 Fotoshooting:</b> logisches Schließen wie beim Sudoku, mit Bildern statt Zahlen (4×4, später 6×6).', '<b>📸 Fotózás:</b> sudoku-szerű következtetés számok helyett képekkel (4×4, később 6×6).'],
+  '<b>📸 Photo Shoot:</b> sudoku-style deduction with pictures or numbers (4×4, then 6×6, on Superstar also 9×9).': ['<b>📸 Fotoshooting:</b> logisches Schließen wie beim Sudoku, mit Bildern oder Zahlen (4×4, später 6×6, bei Superstar auch 9×9).', '<b>📸 Fotózás:</b> sudoku-szerű következtetés képekkel vagy számokkal (4×4, később 6×6, Szupersztár szinten 9×9 is).'],
   '<b>🔍 Stage Clues:</b> reading carefully and logical reasoning: left, right, next to, between, not.': ['<b>🔍 Bühnen-Rätsel:</b> genaues Lesen und logisches Denken: links, rechts, neben, zwischen, nicht.', '<b>🔍 Színpadi rejtvény:</b> figyelmes olvasás és logikus gondolkodás: balra, jobbra, mellett, között, nem.'],
   'The story also asks her to make choices, name things and budget hearts in the shops. Puzzle level can be changed any time in Settings.': ['In der Geschichte trifft sie außerdem Entscheidungen, vergibt Namen und teilt sich ihre Herzen in den Shops ein. Die Schwierigkeit lässt sich jederzeit in den Einstellungen ändern.', 'A történetben döntéseket is hoz, neveket ad, és beosztja a szíveit a boltokban. A nehézség bármikor módosítható a Beállításokban.'],
   'Install it like an app': ['Wie eine App installieren', 'Telepítés alkalmazásként'],
@@ -1101,7 +1133,7 @@ function defaultState() {
     cards: [], accs: ['none'], wear: {}, stages: ['dream'], stage: 'dream',
     concept: 'pastel', fandom: 'Twinklers', flags: {},
     stats: { played: 0, won: 0, stars: 0, orders: 0, sums: 0, dances: 0, patterns: 0, photos: 0, clues: 0 },
-    tut: {}, sfx: true, music: true, lang: detectLang()
+    tut: {}, sfx: true, music: true, sudokuNums: false, lang: detectLang()
   };
 }
 let S = defaultState();
@@ -1128,6 +1160,7 @@ function sanitizeState(d) {
   out.name = String(out.name || '').slice(0, 14);
   out.fandom = String(out.fandom || 'Twinklers').slice(0, 14);
   out.sfx = out.sfx !== false; out.music = out.music !== false;
+  out.sudokuNums = out.sudokuNums === true;
   if (LANG_IDS.indexOf(out.lang) < 0) out.lang = detectLang();
   out.started = !!out.started; out.finished = !!out.finished;
   return out;
@@ -1790,6 +1823,68 @@ const UI = {
     setTimeout(() => { if (h.parentNode) h.parentNode.removeChild(h); }, 3100);
   },
   clearHand() { $$('.hand').forEach(h => h.parentNode.removeChild(h)); },
+  /* drag and drop for the tap-to-place games: a press that moves 9 px becomes a drag, shorter presses stay clicks.
+     o = { from: element to listen on, item: selector of draggables, to: selector of drop targets,
+           can(item), ghost(item) -> html, accept(item, target) (only for the highlight), drop(item, target or null) }.
+     Returns { off() }: call it from the game's stop(). */
+  drag(o) {
+    let d = null, lastDrop = 0;
+    const clear = () => {
+      if (!d) return;
+      if (d.over) d.over.classList.remove('dover');
+      d.it.classList.remove('dsrc');
+      if (d.g && d.g.parentNode) d.g.parentNode.removeChild(d.g);
+    };
+    const down = e => {
+      if (d || !e.isPrimary || e.button > 0) return;
+      const it = e.target.closest ? e.target.closest(o.item) : null;
+      if (!it || !o.from.contains(it) || (o.can && !o.can(it))) return;
+      d = { it, id: e.pointerId, x0: e.clientX, y0: e.clientY, moved: false, g: null, over: null };
+    };
+    const move = e => {
+      if (!d || e.pointerId !== d.id) return;
+      const dx = e.clientX - d.x0, dy = e.clientY - d.y0;
+      if (!d.moved) {
+        if (dx * dx + dy * dy < 81) return;
+        d.moved = true;
+        d.g = document.createElement('div'); d.g.className = 'dghost'; d.g.innerHTML = o.ghost(d.it);
+        document.body.appendChild(d.g);
+        d.it.classList.add('dsrc');
+        Sound.play('pick');
+      }
+      if (e.cancelable) e.preventDefault();
+      d.g.style.left = e.clientX + 'px'; d.g.style.top = e.clientY + 'px';
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      let t = el && el.closest ? el.closest(o.to) : null;
+      if (t && o.accept && !o.accept(d.it, t)) t = null;
+      if (t !== d.over) { if (d.over) d.over.classList.remove('dover'); d.over = t; if (t) t.classList.add('dover'); }
+    };
+    const up = e => {
+      if (!d || e.pointerId !== d.id) return;
+      const cur = d;
+      if (!cur.moved) { d = null; return; }
+      clear(); d = null; lastDrop = Date.now();
+      const el = e.type === 'pointercancel' ? null : document.elementFromPoint(e.clientX, e.clientY);
+      o.drop(cur.it, el && el.closest ? el.closest(o.to) : null);
+    };
+    // swallow the click that the browser fires right after a drag (on touch it lands on the dragged element)
+    const click = e => { if (Date.now() - lastDrop < 400) { e.stopPropagation(); e.preventDefault(); } };
+    o.from.addEventListener('pointerdown', down);
+    window.addEventListener('pointermove', move, { passive: false });
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+    window.addEventListener('click', click, true);
+    return {
+      off() {
+        clear(); d = null;
+        o.from.removeEventListener('pointerdown', down);
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', up);
+        window.removeEventListener('pointercancel', up);
+        window.removeEventListener('click', click, true);
+      }
+    };
+  },
   bumpPills() { $$('.pill-hearts, .pill-fans').forEach(p => this.retrigger(p, 'bump')); }
 };
 
@@ -1905,9 +2000,9 @@ Logic.sudokuParams = function (tier, level) {
   const L = Math.max(level, 1) - 1;
   if (tier === 0) return { n: 4, givens: Math.max(8, 10 - Math.floor(L / 3)) };
   if (tier === 1) return level >= 7 ? { n: 6, givens: Math.max(18, 24 - (level - 7)) } : { n: 4, givens: Math.max(5, 7 - Math.floor(L / 2)) };
-  return { n: 6, givens: Math.max(13, 20 - L) };
+  return level >= 5 ? { n: 9, givens: Math.max(30, 40 - (level - 5)) } : { n: 6, givens: Math.max(13, 20 - L) };
 };
-Logic.boxDims = n => (n === 6 ? { br: 2, bc: 3 } : { br: 2, bc: 2 });
+Logic.boxDims = n => (n === 9 ? { br: 3, bc: 3 } : n === 6 ? { br: 2, bc: 3 } : { br: 2, bc: 2 });
 Logic.countSolutions = function (grid, n, br, bc, limit) {
   const g = grid.slice(); const full = (1 << n) - 1; let count = 0;
   function avail(i) {
@@ -2076,33 +2171,49 @@ const PATGEN = {
   aab: P => { const t = pickN(P, 2); return picQ([t[0], t[0], t[1], t[0], t[0], t[1]], 5, T('Two the same, then one different. Again and again!')); },
   abb: P => { const t = pickN(P, 2); return picQ([t[0], t[1], t[1], t[0], t[1], t[1]], rand(4, 5), T('One, then two the same. Again and again!')); },
   abbc: P => { const t = pickN(P, 3); return picQ([t[0], t[1], t[1], t[2], t[0], t[1], t[1]], 6, T('The pattern is 4 long: one, two, two, three.')); },
-  up1: () => { const s = rand(1, 12); return numQ(range(5).map(i => s + i), 4, T('Count up by 1:')); },
-  down1: () => { const s = rand(7, 16); return numQ(range(5).map(i => s - i), 4, T('Count down by 1:')); },
-  up2: () => { const s = pick([0, 1, 2, 3, 4, 6, 10]); return numQ(range(5).map(i => s + 2 * i), 4, T('Skip count by 2s:')); },
-  up5: () => { const s = pick([5, 10, 15, 20]); return numQ(range(5).map(i => s + 5 * i), 4, T('Count by 5s:')); },
-  up10: () => { const s = pick([10, 20, 30]); return numQ(range(5).map(i => s + 10 * i), 4, T('Count by 10s:')); },
-  upK: () => { const k = rand(2, 5), s = rand(1, 15); return numQ(range(5).map(i => s + k * i), 4, T('Add {k} each time:', { k })); },
-  downK: () => { const k = rand(2, 5), s = rand(25, 45); return numQ(range(5).map(i => s - k * i), 4, T('Take away {k} each time:', { k })); },
-  up10s: () => { const s = rand(1, 9); return numQ(range(5).map(i => s + 10 * i), 4, T('Add 10 each time:')); },
-  double: () => { const s = rand(1, 3); return numQ(range(5).map(i => s * Math.pow(2, i)), 4, T('Each number doubles (× 2):')); },
-  hideMid: () => { const k = rand(2, 5), s = rand(1, 20); return numQ(range(5).map(i => s + k * i), rand(1, 3), T('Add {k} each time:', { k })); },
+  up1: () => { const s = rand(1, 15); return numQ(range(5).map(i => s + i), rand(1, 4), T('Count up by 1:')); },
+  down1: () => { const s = rand(6, 20); return numQ(range(5).map(i => s - i), rand(1, 4), T('Count down by 1:')); },
+  up2: () => { const s = rand(0, 12); return numQ(range(5).map(i => s + 2 * i), 4, T('Skip count by 2s:')); },
+  up5: () => { const s = 5 * rand(0, 5); return numQ(range(5).map(i => s + 5 * i), 4, T('Count by 5s:')); },
+  up10: () => { const s = 10 * rand(0, 3); return numQ(range(5).map(i => s + 10 * i), 4, T('Count by 10s:')); },
+  upK: () => { const k = rand(2, 6), s = rand(1, 20); return numQ(range(5).map(i => s + k * i), 4, T('Add {k} each time:', { k })); },
+  downK: () => { const k = rand(2, 6), s = rand(30, 50); return numQ(range(5).map(i => s - k * i), 4, T('Take away {k} each time:', { k })); },
+  down10: () => { const s = rand(55, 99); return numQ(range(5).map(i => s - 10 * i), 4, T('Take away {k} each time:', { k: 10 })); },
+  up10s: () => { const s = rand(1, 19); return numQ(range(5).map(i => s + 10 * i), pick([3, 4]), T('Add 10 each time:')); },
+  double: () => { const s = rand(1, 5); return numQ(range(5).map(i => s * Math.pow(2, i)), pick([3, 4]), T('Each number doubles (× 2):')); },
+  hideMid: () => { const k = rand(2, 6), s = rand(1, 20); return numQ(range(5).map(i => s + k * i), rand(1, 3), T('Add {k} each time:', { k })); },
   alt: () => {
-    const a = rand(3, 5), b = rand(1, 2); let v = rand(1, 10); const items = [v];
+    const a = rand(3, 6), b = rand(1, Math.min(3, a - 1)); let v = rand(1, 12); const items = [v];
     for (let i = 1; i < 6; i++) { v += i % 2 ? a : -b; items.push(v); }
     return numQ(items, 5, T('It goes +{a}, then −{b}, over and over:', { a, b }));
   },
-  grow: () => { const d0 = rand(1, 2), s = rand(1, 5); const items = [s]; for (let i = 0; i < 5; i++) items.push(items[i] + d0 + i); return numQ(items, 5, T('The jumps grow by one each time (+{a}, +{b}, +{c}...):', { a: d0, b: d0 + 1, c: d0 + 2 })); },
-  mul: () => { const m = pick([2, 3]); const s = m === 3 ? rand(1, 2) : rand(2, 4); return numQ(range(5).map(i => s * Math.pow(m, i)), 4, T('Multiply by {m} each time:', { m })); },
-  half: () => { const s = pick([64, 80, 96, 128, 160]); return numQ(range(5).map(i => s / Math.pow(2, i)), 4, T('Each number is half of the one before (÷ 2):')); },
-  squares: () => { const s = rand(1, 3); const items = range(5).map(i => (s + i) * (s + i)); return numQ(items, 4, T('Square numbers ({a}×{a}, {b}×{b} and so on):', { a: s, b: s + 1 })); },
-  fib: () => { const pr = pick([[1, 1], [1, 2], [2, 3], [1, 3], [2, 2]]); const items = pr.slice(); while (items.length < 6) items.push(items[items.length - 1] + items[items.length - 2]); return numQ(items, 5, T('Add the two numbers before:')); },
+  twoSteps: () => {
+    const a = rand(1, 4), b = rand(5, 9); let v = rand(1, 10); const items = [v];
+    for (let i = 1; i < 6; i++) { v += i % 2 ? a : b; items.push(v); }
+    return numQ(items, 5, T('It goes +{a}, then +{b}, over and over:', { a, b }));
+  },
+  grow: () => { const d0 = rand(1, 3), s = rand(1, 10); const items = [s]; for (let i = 0; i < 5; i++) items.push(items[i] + d0 + i); return numQ(items, pick([4, 5]), T('The jumps grow by one each time (+{a}, +{b}, +{c}...):', { a: d0, b: d0 + 1, c: d0 + 2 })); },
+  mul: () => { const m = pick([2, 2, 3]); const s = m === 3 ? rand(1, 2) : rand(2, 7); return numQ(range(5).map(i => s * Math.pow(m, i)), pick([3, 4]), T('Multiply by {m} each time:', { m })); },
+  half: () => { const s = 16 * rand(3, 12); return numQ(range(5).map(i => s / Math.pow(2, i)), pick([3, 4]), T('Each number is half of the one before (÷ 2):')); },
+  squares: () => { const s = rand(1, 6); const items = range(5).map(i => (s + i) * (s + i)); return numQ(items, rand(2, 4), T('Square numbers ({a}×{a}, {b}×{b} and so on):', { a: s, b: s + 1 })); },
+  fib: () => { const items = [rand(1, 5), rand(1, 6)]; while (items.length < 6) items.push(items[items.length - 1] + items[items.length - 2]); return numQ(items, rand(2, 5), T('Add the two numbers before:')); },
   altOps: () => {
-    const a = rand(1, 3); let v = rand(1, 4); const items = [v];
+    const a = rand(1, 4); let v = rand(1, 6); const items = [v];
     for (let i = 1; i < 6; i++) { v = i % 2 ? v + a : v * 2; items.push(v); }
     return numQ(items, 5, T('It goes +{a}, then × 2, over and over:', { a }));
   },
-  bigDown: () => { const k = rand(6, 9), s = rand(80, 100); return numQ(range(5).map(i => s - k * i), 4, T('Take away {k} each time:', { k })); },
-  upKbig: () => { const k = rand(6, 12), s = rand(1, 20); return numQ(range(5).map(i => s + k * i), 4, T('Add {k} each time:', { k })); },
+  timesMinus: () => {
+    const b = rand(1, 3); let v = rand(b + 1, 6); const items = [v];
+    for (let i = 1; i < 6; i++) { v = i % 2 ? v * 2 : v - b; items.push(v); }
+    return numQ(items, 5, T('It goes × 2, then −{b}, over and over:', { b }));
+  },
+  twoStepsBig: () => {
+    const a = rand(3, 9), b = rand(10, 15); let v = rand(1, 20); const items = [v];
+    for (let i = 1; i < 6; i++) { v += i % 2 ? a : b; items.push(v); }
+    return numQ(items, 5, T('It goes +{a}, then +{b}, over and over:', { a, b }));
+  },
+  bigDown: () => { const k = rand(6, 12), s = rand(70, 100); return numQ(range(5).map(i => s - k * i), 4, T('Take away {k} each time:', { k })); },
+  upKbig: () => { const k = rand(6, 12), s = rand(1, 30); return numQ(range(5).map(i => s + k * i), 4, T('Add {k} each time:', { k })); },
   hideMidHard: () => {
     if (Math.random() < 0.5) { const m = 2, s = rand(3, 7); return numQ(range(5).map(i => s * Math.pow(m, i)), rand(1, 3), T('Multiply by {m} each time:', { m: 2 })); }
     const k = rand(6, 12), s = rand(1, 30); return numQ(range(5).map(i => s + k * i), rand(1, 3), T('Add {k} each time:', { k }));
@@ -2110,19 +2221,27 @@ const PATGEN = {
 };
 const PAT_POOLS = [
   [{ g: 'ab', w: 3 }, { g: 'abc', w: 2 }, { g: 'aab', w: 2 }, { g: 'up1', w: 3 }, { g: 'down1', w: 2, min: 2 }, { g: 'up2', w: 2, min: 2 }, { g: 'abb', w: 2, min: 3 }, { g: 'up5', w: 1, min: 4 }, { g: 'up10', w: 1, min: 5 }],
-  [{ g: 'upK', w: 3 }, { g: 'downK', w: 2 }, { g: 'up10s', w: 2 }, { g: 'abbc', w: 1 }, { g: 'double', w: 2, min: 2 }, { g: 'hideMid', w: 2, min: 2 }, { g: 'up5', w: 1 }, { g: 'alt', w: 1, min: 4 }],
-  [{ g: 'grow', w: 2 }, { g: 'mul', w: 2 }, { g: 'half', w: 1 }, { g: 'upKbig', w: 1 }, { g: 'squares', w: 1, min: 2 }, { g: 'fib', w: 2, min: 2 }, { g: 'bigDown', w: 1 }, { g: 'hideMidHard', w: 2 }, { g: 'altOps', w: 2, min: 3 }]
+  [{ g: 'upK', w: 3 }, { g: 'downK', w: 2 }, { g: 'up10s', w: 2 }, { g: 'abbc', w: 1 }, { g: 'double', w: 2, min: 2 }, { g: 'hideMid', w: 2, min: 2 }, { g: 'up5', w: 1 }, { g: 'down10', w: 1, min: 3 }, { g: 'alt', w: 1, min: 4 }, { g: 'twoSteps', w: 1, min: 5 }],
+  [{ g: 'grow', w: 2 }, { g: 'mul', w: 2 }, { g: 'half', w: 1 }, { g: 'upKbig', w: 1 }, { g: 'squares', w: 1, min: 2 }, { g: 'fib', w: 2, min: 2 }, { g: 'bigDown', w: 1 }, { g: 'hideMidHard', w: 2 }, { g: 'altOps', w: 2, min: 3 }, { g: 'twoStepsBig', w: 1, min: 2 }, { g: 'timesMinus', w: 2, min: 4 }]
 ];
+const PAT_SEEN = []; // recent questions in this session (newest last), so the same puzzle does not come back soon
 Logic.patternSet = function (tier, level, pics, count) {
   const pool = PAT_POOLS[tier].filter(e => !e.min || level >= e.min);
-  const out = []; let last = null;
+  const out = [], used = [];
   while (out.length < count) {
-    const cands = pool.filter(e => e.g !== last);
+    let cands = pool.filter(e => used.indexOf(e.g) < 0);
+    if (!cands.length) { used.length = 0; cands = pool.filter(e => e.g !== out[out.length - 1].gen); }
     let total = 0; cands.forEach(e => { total += e.w; });
     let r = Math.random() * total, ch = cands[0];
     for (const e of cands) { r -= e.w; if (r <= 0) { ch = e; break; } }
-    last = ch.g;
-    const q = PATGEN[ch.g](pics);
+    used.push(ch.g);
+    let q, key;
+    for (let tries = 0; tries < 12; tries++) {
+      q = PATGEN[ch.g](pics);
+      key = q.items.join(',') + '|' + q.hide;
+      if (PAT_SEEN.indexOf(key) < 0) break;
+    }
+    PAT_SEEN.push(key); if (PAT_SEEN.length > 60) PAT_SEEN.shift();
     q.gen = ch.g;
     q.options = Logic.patternOptions(q, tier, pics);
     out.push(q);
@@ -2259,7 +2378,7 @@ const MergeGame = {
     this.cells = new Array(p.cols * p.rows).fill(null);
     this.orders = []; this.fanPool = shuffle(FANS.slice());
     this.done = 0; this.moves = p.moves; this.total = p.moves; this.hints = 3; this.sums = 0;
-    this.sel = -1; this.drag = null; this.over = false; this.warned = false; this.seenDouble = false;
+    this.sel = -1; this.drag = null; this.hl = null; this.over = false; this.warned = false; this.seenDouble = false;
     this.tut = (!S.tut.merge || o.cfg === 'merge1') ? 1 : 0;
     for (let i = 0; i < Math.min(p.show, p.orders); i++) this.addOrder(this.orders.length, false);
     const start = Logic.startCandies(p, this.orders[0].t);
@@ -2336,6 +2455,14 @@ const MergeGame = {
     }).join('');
     this.orders.forEach(o => { o.fresh = false; });
     this.renderHud();
+    this.applyHl();
+  },
+  applyHl() {
+    const h = this.hl || {};
+    $$('.candy.hint', this.boardEl).forEach(c => c.classList.remove('hint'));
+    (h.cells || []).forEach(i => { const el = this.cellEl(i), c = el && el.querySelector('.candy'); if (c) c.classList.add('hint'); });
+    $$('.order', this.ordersEl).forEach(o => o.classList.toggle('hint-ring', +o.getAttribute('data-k') === h.order));
+    ['mSpawn', 'mBin'].forEach(id => { const b = $('#' + id); if (b) b.classList.toggle('hint-ring', h.btn === id); });
   },
   renderHud() {
     let prog = '';
@@ -2515,6 +2642,7 @@ const MergeGame = {
     if (this.cells[i] == null || this.cells[j] != null) { this.render(); return; }
     this.cells[j] = this.cells[i]; this.cells[i] = null;
     Sound.play('place');
+    this.hl = null;
     this.render();
   },
   nope(i, msg, k) {
@@ -2526,6 +2654,7 @@ const MergeGame = {
     UI.toast(msg, 2800);
   },
   after() {
+    if (this.hl) { this.hl = null; this.applyHl(); }
     this.renderHud();
     if (this.done >= this.p.orders) {
       this.over = true;
@@ -2549,18 +2678,23 @@ const MergeGame = {
     const h = Logic.mergeHint(this.cells, this.orders.map(o => o.t), this.p);
     if (h.type === 'deliver') {
       const k = this.orders.findIndex(o => o.t === this.cells[h.i]);
+      this.hl = { cells: [h.i], order: k };
       UI.hand(this.cellEl(h.i), this.orderEl(k));
       if (manual) UI.toast(T('This candy matches an order. Give it away!'));
     } else if (h.type === 'merge') {
+      this.hl = { cells: [h.i, h.j] };
       UI.hand(this.cellEl(h.i), this.cellEl(h.j));
       if (manual) UI.toast(this.cells[h.i] === DOUBLE ? T('Try the ×2 star on this candy!') : T('Try putting these two together!'));
     } else if (h.type === 'spawn') {
+      this.hl = { btn: 'mSpawn' };
       UI.hand($('#mSpawn'));
       if (manual) UI.toast(T('Get a new candy from the gift box!'));
     } else {
+      this.hl = { cells: [h.i], btn: 'mBin' };
       UI.hand(this.cellEl(h.i), $('#mBin'));
       if (manual) UI.toast(T('This candy is too big for any order. Put it in the bin!'));
     }
+    this.applyHl();
   },
   tutStep(n) {
     this.tut = n;
@@ -2749,7 +2883,7 @@ const PatternGame = {
 
 /* ===================== Photo Shoot (sudoku with faces) ===================== */
 const PhotoGame = {
-  GUESTS: ['🐶', '🐹', '🐤', '🐧', '🐨', '🐯'],
+  GUESTS: ['🐶', '🐹', '🐤', '🐧', '🐨', '🐯', '🐮', '🐷', '🐸'],
   start(root, o) {
     this.o = o; this.root = root; this.timers = []; this.later = laterFor(this);
     const p = o.story ? STORY_CFG.sudoku(o.tier) : Logic.sudokuParams(o.tier, o.level);
@@ -2759,37 +2893,64 @@ const PhotoGame = {
     this.sel = -1; this.lastPut = -1; this.mistakes = 0; this.hints = 3; this.over = false; this.toldGiven = false;
     const mem = S.members.slice(0, this.n);
     this.syms = mem.concat(this.GUESTS.slice(0, this.n - mem.length));
+    this.nums = S.sudokuNums === true;
     const host = o.story || S.members.indexOf('maple') >= 0 ? 'maple' : 'hazel';
-    const box = this.n === 6 ? T('2-by-3') : T('2-by-2');
+    const box = this.n === 9 ? T('3-by-3') : this.n === 6 ? T('2-by-3') : T('2-by-2');
     root.innerHTML = Game.header(o.story ? T('Maple\'s photo puzzle') : T(GAMES.sudoku.name), o.level, o.story,
-      '<button class="ibtn rel" id="sHint" aria-label="' + T('Hint') + '">💡<span class="badge" id="sHintN">3</span></button>') +
+      '<button class="ibtn smode" id="sMode" aria-label="' + T('Pictures or numbers') + '"></button><button class="ibtn rel" id="sHint" aria-label="' + T('Hint') + '">💡<span class="badge" id="sHintN">3</span></button>') +
       '<div class="coach">' + faceHTML(host) + '<span class="grow">' + T('Each row, column and thick {box} box needs everyone exactly once!', { box }) + '</span></div>' +
       '<div class="swrap" id="sWrap"><div class="sgrid" id="sGrid"></div></div>' +
-      '<div class="palette" id="sPal"></div>';
+      '<div class="palette' + (this.n === 9 ? ' p9' : '') + '" id="sPal"></div>';
     this.gridEl = $('#sGrid'); this.wrapEl = $('#sWrap');
-    $('#sPal').innerHTML = this.syms.map((s, v) => '<button data-v="' + v + '" aria-label="' + (MEMBERS[s] ? MEMBERS[s].name : T('guest')) + '">' + this.symHTML(v, false) + '</button>').join('') +
-      '<button data-v="-1" aria-label="' + T('Erase') + '" style="font-size:24px;font-weight:700">✕</button>';
     $('#sPal').addEventListener('click', e => { const b = e.target.closest('button'); if (b) this.put(+b.getAttribute('data-v')); });
     this.gridEl.addEventListener('click', e => { const c = e.target.closest('.scell'); if (c) this.tap(+c.getAttribute('data-i')); });
     $('#sHint').addEventListener('click', () => this.hint());
+    $('#sMode').addEventListener('click', () => this.toggleNums());
     this._rs = () => this.layout();
     window.addEventListener('resize', this._rs);
+    this.dnd = UI.drag({
+      from: $('#sPal'), item: 'button', to: '.scell',
+      can: b => !b.classList.contains('done') && !this.over,
+      ghost: b => { const v = +b.getAttribute('data-v'); return v < 0 ? '<span class="dg-x">✕</span>' : this.symHTML(v, false); },
+      accept: (b, c) => !this.given[+c.getAttribute('data-i')],
+      drop: (b, c) => {
+        if (!c || this.over) return;
+        const i = +c.getAttribute('data-i');
+        if (this.given[i]) { this.tap(i); return; }
+        this.sel = i; this.put(+b.getAttribute('data-v'));
+      }
+    });
     this.layout();
     this.render();
   },
-  stop() { this.over = true; this.timers.forEach(clearTimeout); this.timers = []; window.removeEventListener('resize', this._rs); },
+  stop() { this.over = true; this.timers.forEach(clearTimeout); this.timers = []; window.removeEventListener('resize', this._rs); if (this.dnd) this.dnd.off(); },
   layout() {
     const W = this.wrapEl.clientWidth - 16, H = this.wrapEl.clientHeight - 16;
-    const sc = Math.floor(Math.max(40, Math.min((W - 8) / this.n, (H - 8) / this.n, 84)));
+    const sc = Math.floor(Math.max(this.n === 9 ? 28 : 40, Math.min((W - 8) / this.n, (H - 8) / this.n, 84)));
     this.gridEl.style.setProperty('--sc', sc + 'px');
     this.gridEl.style.setProperty('--n', this.n);
   },
   symHTML(v, put) {
+    if (this.nums) return '<span class="snum' + (put ? ' put' : '') + '">' + (v + 1) + '</span>';
     const s = this.syms[v];
     if (MEMBERS[s]) return '<span class="face' + (put ? ' put' : '') + '" style="--c:' + MEMBERS[s].color + '">' + memberArt(s, { head: true, acc: 'none' }) + '</span>';
     return '<span class="emo' + (put ? ' face put' : '') + '"' + (put ? ' style="--c:#fff;border:0"' : '') + '>' + s + '</span>';
   },
   cellEl(i) { return this.gridEl.querySelector('[data-i="' + i + '"]'); },
+  count(v) { let c = 0; this.grid.forEach(x => { if (x === v) c++; }); return c; },
+  renderPal() {
+    $('#sPal').innerHTML = this.syms.map((s, v) => {
+      const done = this.count(v) >= this.n;
+      return '<button data-v="' + v + '"' + (done ? ' class="done" aria-disabled="true"' : '') + ' aria-label="' + (this.nums ? v + 1 : MEMBERS[s] ? MEMBERS[s].name : T('guest')) + '">' + this.symHTML(v, false) + '</button>';
+    }).join('') + '<button data-v="-1" aria-label="' + T('Erase') + '" style="font-size:24px;font-weight:700">✕</button>';
+    $('#sMode').innerHTML = this.nums ? '🐾' : '<b class="m123">123</b>';
+  },
+  toggleNums() {
+    this.nums = !this.nums; S.sudokuNums = this.nums; Store.saveSoon();
+    Sound.play('tap');
+    this.render();
+    UI.toast(this.nums ? T('Now with numbers!') : T('Now with pictures!'));
+  },
   render() {
     const n = this.n, br = this.pz.br, bc = this.pz.bc;
     const bad = Logic.sudokuConflicts(this.grid, n, br, bc);
@@ -2808,6 +2969,7 @@ const PhotoGame = {
     }
     this.gridEl.innerHTML = h;
     this.lastPut = -1;
+    this.renderPal();
   },
   tap(i) {
     if (this.over) return;
@@ -2822,7 +2984,8 @@ const PhotoGame = {
   },
   put(v) {
     if (this.over) return;
-    if (this.sel < 0) { UI.toast(T('First tap an empty square, then pick who goes there.')); return; }
+    if (v >= 0 && this.count(v) >= this.n && !(this.sel >= 0 && this.grid[this.sel] === v)) { Sound.play('error'); UI.toast(T('All of these are already placed. Pick another one!')); return; }
+    if (this.sel < 0) { UI.toast(T('Drag one onto an empty square, or tap the square first.')); return; }
     const i = this.sel;
     if (this.given[i]) return;
     if (v === -1) { if (this.grid[i] >= 0) { this.grid[i] = -1; Sound.play('whoosh'); this.render(); } return; }
@@ -2888,10 +3051,17 @@ const CluesGame = {
     $('#lCheck').addEventListener('click', () => this.check());
     this._rs = () => { this.layout(); this.moreCue(); };
     window.addEventListener('resize', this._rs);
+    this.dnd = UI.drag({
+      from: this.root, item: '#lPool .tok, .slot.filled', to: '.slot, #lPool',
+      can: () => !this.over,
+      ghost: el => faceHTML(this.cast[this.dragMi(el)], { acc: 'none' }),
+      accept: (el, t) => t !== el && !(t.id === 'lPool' && el.classList.contains('tok')),
+      drop: (el, t) => this.dropTo(el, t)
+    });
     this.layout();
     this.render();
   },
-  stop() { this.over = true; this.timers.forEach(clearTimeout); this.timers = []; window.removeEventListener('resize', this._rs); },
+  stop() { this.over = true; this.timers.forEach(clearTimeout); this.timers = []; window.removeEventListener('resize', this._rs); if (this.dnd) this.dnd.off(); },
   layout() {
     const W = Math.min(this.root.clientWidth, 520) - 40;
     $('#lSlots').style.setProperty('--sw', Math.floor(Math.min(80, (W - (this.k - 1) * 7) / this.k)) + 'px');
@@ -2964,7 +3134,24 @@ const CluesGame = {
       else { this.slots[sel.s] = occ; this.slots[s] = sel.mi; }
       this.sel = null; Sound.play('place'); this.changed();
     } else if (occ >= 0) { this.sel = { from: 'slot', s, mi: occ }; Sound.play('pick'); this.render(); }
-    else UI.toast(T('Tap a friend first, then tap a spot.'));
+    else UI.toast(T('Drag a friend onto a spot, or tap the friend, then the spot.'));
+  },
+  dragMi(el) { return el.classList.contains('slot') ? this.slots[+el.getAttribute('data-s')] : +el.getAttribute('data-m'); },
+  dropTo(el, t) {
+    if (this.over || !t) return;
+    const fromSlot = el.classList.contains('slot'), s0 = fromSlot ? +el.getAttribute('data-s') : -1, mi = this.dragMi(el);
+    if (!(mi >= 0)) return;
+    if (t.id === 'lPool') {
+      if (!fromSlot) return;
+      this.slots[s0] = -1; Sound.play('whoosh');
+    } else {
+      const s = +t.getAttribute('data-s');
+      if (s === s0) return;
+      if (fromSlot) { this.slots[s0] = this.slots[s]; this.slots[s] = mi; } // swap (the other spot may be empty)
+      else this.slots[s] = mi; // whoever stood there goes back to the pool
+      Sound.play('place');
+    }
+    this.sel = null; this.changed();
   },
   changed() { this.checked = false; this.render(); },
   check() {
@@ -3648,7 +3835,7 @@ const Screens = {
       '<p class="skill">' + T('<b>🍬 Candy Orders:</b> mental addition and planning ahead with limited moves. Superstar level adds doubling.') + '</p>' +
       '<p class="skill">' + T('<b>💃 Dance Practice:</b> working memory. Sequences grow longer; Superstar sometimes asks for them backwards.') + '</p>' +
       '<p class="skill">' + T('<b>🥁 Pattern Parade:</b> number sequences, skip counting, doubling and repeating patterns, with a short explanation after every answer.') + '</p>' +
-      '<p class="skill">' + T('<b>📸 Photo Shoot:</b> sudoku-style deduction with pictures instead of numbers (4×4, then 6×6).') + '</p>' +
+      '<p class="skill">' + T('<b>📸 Photo Shoot:</b> sudoku-style deduction with pictures or numbers (4×4, then 6×6, on Superstar also 9×9).') + '</p>' +
       '<p class="skill">' + T('<b>🔍 Stage Clues:</b> reading carefully and logical reasoning: left, right, next to, between, not.') + '</p>' +
       '<p class="skill">' + T('The story also asks her to make choices, name things and budget hearts in the shops. Puzzle level can be changed any time in Settings.') + '</p>' +
       '<h3>' + T('Install it like an app') + '</h3>' +
